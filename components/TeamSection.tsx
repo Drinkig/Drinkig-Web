@@ -172,9 +172,9 @@ export function TeamSection() {
                         기술의 한계를 넘어, 진정성 있는 서비스를 만듭니다."
                       </p>
                       <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                        <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Product Planning</span>
-                        <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Vibe Coding</span>
-                        <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Sommelier Advised</span>
+                        <span className="px-2.5 py-0.5 bg-white/5 border border-white/10 rounded-full text-[11px] text-gray-400 tracking-wide">Product Planning</span>
+                        <span className="px-2.5 py-0.5 bg-white/5 border border-white/10 rounded-full text-[11px] text-gray-400 tracking-wide">Vibe Coding</span>
+                        <span className="px-2.5 py-0.5 bg-white/5 border border-white/10 rounded-full text-[11px] text-gray-400 tracking-wide">Gastronomy Editor</span>
                       </div>
                     </div>
                   </div>
@@ -186,10 +186,10 @@ export function TeamSection() {
                 <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
                   <svg className="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.0171 16H6.01709V14H19.0171V7H15.0171C13.9125 7 13.0171 6.10457 13.0171 5V1H10.0171V12H4.01709V21H14.017ZM21.0171 21V5C21.0171 3.89543 20.1216 3 19.0171 3H15.0171V7H19.0171V21H21.0171Z"/></svg>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4">Why We Started</h3>
+                <h3 className="text-xl font-bold text-white mb-4">Why I Restarted</h3>
                 <p className="text-2xl font-light text-gray-300 italic mb-6">
                   "말은 같아도 맛은 다르다.<br/>
-                  우리는 그 <span className="text-purple-400 font-semibold">언어의 간극</span>을 좁히고 싶었다."
+                  나는 그 <span className="text-purple-400 font-semibold">언어의 간극</span>을 좁히고 싶었다."
                 </p>
                 <div className="flex items-center text-purple-400 font-medium group-hover:text-purple-300">
                   Founder's Note 읽기 
