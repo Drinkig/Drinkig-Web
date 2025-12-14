@@ -1,111 +1,143 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { cn } from "./ui/utils";
+
+// 이미지는 기존 에셋을 최대한 활용하되, 의미에 맞게 매핑
 const wineCurationImage = '/images/feature-wine-curation.png';
-const wineSearchImage = '/images/feature-wine-search.png';
+const wineSearchImage = '/images/feature-wine-search.png'; // 상황별 추천에 활용
 const tastingNoteImage = '/images/feature-tasting-note.png';
 const wineManagementImage = '/images/feature-wine-management.png';
+
+// 아이폰 목업 컴포넌트
+function IPhoneMockup({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return (
+    <div className={cn("relative mx-auto border-gray-800 bg-gray-800 border-[8px] rounded-[2.5rem] h-[400px] w-[200px] shadow-2xl flex flex-col overflow-hidden", className)}>
+      <div className="h-[32px] w-[3px] bg-gray-800 absolute -start-[11px] top-[72px] rounded-s-lg"></div>
+      <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[11px] top-[124px] rounded-s-lg"></div>
+      <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[11px] top-[178px] rounded-s-lg"></div>
+      <div className="h-[64px] w-[3px] bg-gray-800 absolute -end-[11px] top-[142px] rounded-e-lg"></div>
+      <div className="rounded-[2rem] overflow-hidden w-full h-full bg-black relative">
+        {/* 노치 디자인 */}
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-b-xl z-20"></div>
+        <ImageWithFallback
+          src={src}
+          alt={alt}
+          className="w-full h-full object-cover object-top"
+        />
+        {/* 화면 반사 효과 */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none z-10"></div>
+      </div>
+    </div>
+  );
+}
 
 export function FeaturesSection() {
   const features = [
     {
-      icon: "🍷",
-      title: "와인 큐레이션",
-      description: "당신의 취향과 기록을 반영하여 최적의 와인을 추천드려요!",
+      title: "취향 여정의 시작",
+      description: "마신 와인을 기록할수록\n당신의 취향은 더 선명해집니다.\n확실한 취향을 찾을 때까지 함께할게요.",
       image: wineCurationImage,
-      gradient: "from-purple-500 to-pink-500"
+      className: "lg:col-span-2 lg:row-span-2 bg-gradient-to-br from-purple-900/20 to-black",
+      icon: "🧬",
+      gradient: "from-purple-500 to-pink-500",
+      delay: 0
     },
     {
-      icon: "🔍",
-      title: "와인 검색",
-      description: "어려운 와인을 쉽고 간편하게\n검색하여 정보를 확인하세요.",
+      title: "상황별 맞춤 추천",
+      description: "마트, 식당, 홈파티...\n와인을 고르는 그 순간,\n최적의 한 병을 제안합니다.",
       image: wineSearchImage,
-      gradient: "from-blue-500 to-cyan-500"
+      className: "lg:col-span-1 bg-gradient-to-br from-blue-900/20 to-black",
+      icon: "🎯",
+      gradient: "from-blue-500 to-cyan-500",
+      delay: 0.1
     },
     {
-      icon: "📝",
-      title: "테이스팅 노트",
-      description: "마신 와인의 맛과 향, 느낌을 기록하며 와인 경험을 더 체계적으로 관리하세요.",
+      title: "기록 & 관리",
+      description: "테이스팅 노트와 셀러 관리로\n나만의 와인 경험을 쌓으세요.",
       image: tastingNoteImage,
-      gradient: "from-amber-500 to-orange-500"
+      className: "lg:col-span-1 bg-gradient-to-br from-amber-900/20 to-black",
+      icon: "📝",
+      gradient: "from-amber-500 to-orange-500",
+      delay: 0.2
     },
     {
-      icon: "📦",
-      title: "보유 와인 관리", 
-      description: "소장하고 있는 와인을 체계적으로 관리하고, 언제든지 쉽게 확인할 수 있습니다.",
+      title: "전문가 로직",
+      description: "현직 소믈리에 자문.\n검증된 큐레이션 알고리즘으로\n실패 없는 와인을 추천합니다.",
       image: wineManagementImage,
-      gradient: "from-emerald-500 to-teal-500"
+      className: "lg:col-span-2 bg-gradient-to-br from-emerald-900/20 to-black",
+      icon: "🎩",
+      gradient: "from-emerald-500 to-teal-500",
+      delay: 0.3
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="features" className="py-24 bg-black relative overflow-hidden">
+      {/* 배경 장식 */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            드링키지 앱 기능
+          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
+            와인을 즐기는 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">가장 완벽한 방법</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            와인 초보자부터 애호가까지,
-            <br />
-            모든 분들이 와인을 더 쉽고 즐겁게 경험할 수 있도록 다양한 기능을 제공합니다.
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            당신의 입맛을 가장 잘 아는 소믈리에가 되어드릴게요.
+            <br className="hidden sm:block" />
+            기록이 쌓일수록 추천은 더 정교해집니다.
           </p>
         </motion.div>
         
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              className={cn("group relative overflow-hidden rounded-3xl border border-white/10 hover:border-purple-500/30 transition-colors duration-500", feature.className)}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: index * 0.2,
-                ease: "easeOut"
-              }}
-              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: feature.delay }}
+              viewport={{ once: true }}
             >
-              <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 border-0 shadow-lg">
-                <div className={`lg:flex ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''} items-center h-full`}>
-                  {/* 이미지 섹션 */}
-                  <div className="lg:w-1/2 p-8 lg:p-12 flex items-center justify-center">
-                    <div className="relative">
-                      {/* 이미지 - 깔끔한 앱 목업 */}
-                      <div className="w-44 h-80">
-                        <ImageWithFallback
-                          src={feature.image}
-                          alt={`${feature.title} 앱 화면`}
-                          className="w-full h-full object-contain drop-shadow-2xl"
-                        />
-                      </div>
-                      {/* 부유하는 아이콘 */}
-                      <div className={`absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-full flex items-center justify-center text-2xl shadow-lg`}>
-                        {feature.icon}
-                      </div>
+              <div className="absolute inset-0 bg-noise opacity-5 pointer-events-none" />
+              
+              <div className="p-8 h-full flex flex-col">
+                <div className="flex items-start justify-between mb-8">
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-200 transition-colors">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-400 whitespace-pre-line leading-relaxed group-hover:text-gray-300 transition-colors">
+                      {feature.description}
+                    </p>
+                  </div>
+                  <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${feature.gradient} p-[1px] opacity-80 group-hover:opacity-100 transition-opacity`}>
+                    <div className="w-full h-full bg-black/90 rounded-2xl flex items-center justify-center text-2xl backdrop-blur-sm">
+                      {feature.icon}
                     </div>
                   </div>
+                </div>
+
+                <div className="flex-1 relative flex items-center justify-center pt-4">
+                  {/* 글로우 효과 */}
+                  <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-gradient-to-br ${feature.gradient} blur-[60px] opacity-20 group-hover:opacity-30 transition-opacity`} />
                   
-                  {/* 콘텐츠 섹션 */}
-                  <div className="lg:w-1/2">
-                    <CardHeader className="pb-4">
-                      <CardTitle className="text-2xl lg:text-3xl text-gray-900 mb-4">
-                        {feature.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-lg text-gray-600 leading-relaxed whitespace-pre-line">
-                        {feature.description}
-                      </CardDescription>
-                    </CardContent>
+                  {/* 목업 이미지 */}
+                  <div className="transform group-hover:scale-105 group-hover:-translate-y-2 transition-transform duration-500 ease-out">
+                    <IPhoneMockup 
+                      src={feature.image} 
+                      alt={feature.title}
+                      className="h-[300px] w-[150px] sm:h-[350px] sm:w-[175px]" 
+                    />
                   </div>
                 </div>
-              </Card>
+              </div>
             </motion.div>
           ))}
         </div>
