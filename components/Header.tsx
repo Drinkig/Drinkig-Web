@@ -36,8 +36,8 @@ export function Header() {
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2 group">
+        <div className="relative flex items-center justify-between h-10">
+          <a href="#" className="flex items-center gap-2 group relative z-10">
             <div className="relative">
               <div className="absolute inset-0 bg-purple-500 blur-lg opacity-20 group-hover:opacity-40 transition-opacity rounded-full"></div>
               <img 
@@ -48,7 +48,8 @@ export function Header() {
             </div>
           </a>
           
-          <nav className="hidden md:flex items-center gap-1 bg-white/5 px-2 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+          {/* 중앙 정렬을 위한 Absolute Positioning */}
+          <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center gap-1 bg-white/5 px-2 py-1.5 rounded-full border border-white/10 backdrop-blur-sm z-0">
             {menuItems.map((item) => (
               <a 
                 key={item.label}
@@ -60,7 +61,7 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 relative z-10">
             <Button 
               variant="outline" 
               size="sm" 

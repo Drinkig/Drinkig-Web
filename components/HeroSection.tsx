@@ -4,7 +4,7 @@ import { Badge } from "./ui/badge";
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-[#030213] pt-20">
+    <section id="home" className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-[#030213] pt-32 sm:pt-40">
       {/* Background Effects */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
@@ -35,9 +35,9 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <span className="block text-white mb-2 text-4xl md:text-6xl lg:text-7xl">Connecting Senses</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient-x bg-[length:200%_auto] text-5xl md:text-7xl lg:text-8xl">
-              To Wine
+            <span className="block text-white -mb-1 md:-mb-2 text-3xl md:text-5xl lg:text-6xl leading-tight">어려운 와인 용어 대신</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient-x bg-[length:200%_auto] text-4xl md:text-6xl lg:text-7xl leading-tight">
+              일상의 언어로 찾는 와인
             </span>
           </motion.h1>
 
@@ -78,72 +78,35 @@ export function HeroSection() {
             </Button>
           </motion.div>
 
-          {/* Abstract Graphic: Connecting Two Worlds (Improved) */}
+          {/* App Mockup Visual (Direct & Intuitive) */}
           <motion.div 
-            className="relative w-full max-w-[800px] h-[400px] mx-auto flex items-center justify-center mt-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            className="relative w-full max-w-[600px] mx-auto mt-12 mb-20 flex justify-center"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
           >
-            {/* World 1: 초보자의 언어 (Blue/Purple Orb) - Left */}
-            <motion.div 
-              className="absolute w-48 h-48 md:w-64 md:h-64 rounded-full bg-blue-600 blur-[60px] opacity-70"
-              animate={{ 
-                x: [-100, 0, -100],
-                scale: [1, 0.8, 1]
-              }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            />
+            {/* Background Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-purple-600/30 blur-[100px] rounded-full -z-10"></div>
             
-            {/* World 2: 전문가의 언어 (Pink/Orange Orb) - Right */}
-            <motion.div 
-              className="absolute w-48 h-48 md:w-64 md:h-64 rounded-full bg-pink-600 blur-[60px] opacity-70"
-              animate={{ 
-                x: [100, 0, 100],
-                scale: [1, 0.8, 1]
-              }}
+            {/* Mockup Image with Float Animation */}
+            <motion.div
+              animate={{ y: [-10, 10, -10] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            />
-
-            {/* The Bridge: 연결선 (White Line) */}
-            <motion.div 
-              className="absolute h-[2px] bg-gradient-to-r from-transparent via-white to-transparent opacity-50"
-              animate={{ 
-                width: ["0%", "40%", "0%"],
-                opacity: [0, 1, 0]
-              }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            />
-            
-            {/* Core Fusion: 중앙의 융합 (Purple Glow) */}
-            <motion.div 
-              className="absolute w-32 h-32 bg-purple-500 blur-[40px] opacity-0"
-              animate={{ 
-                opacity: [0, 0.8, 0],
-                scale: [0.5, 1.5, 0.5]
-              }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            />
-            
-            {/* Text Labels (Optional: 의미 전달 보조) */}
-            <motion.div className="absolute left-10 md:left-20 text-blue-300 text-xs md:text-sm font-light tracking-widest opacity-50"
-               animate={{ opacity: [1, 0, 1], x: [-20, 0, -20] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="relative z-10 flex justify-center"
             >
-              DAILY LANGUAGE
+              <img 
+                src="/images/Mockup.png" 
+                alt="Drinkig App Mockup" 
+                className="w-full h-auto drop-shadow-2xl" 
+              />
             </motion.div>
-            <motion.div className="absolute right-10 md:right-20 text-pink-300 text-xs md:text-sm font-light tracking-widest opacity-50"
-               animate={{ opacity: [1, 0, 1], x: [20, 0, 20] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            >
-              SENSORY LANGUAGE
-            </motion.div>
-
           </motion.div>
         </div>
       </div>
       
       {/* Scroll Indicator */}
       <motion.div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >

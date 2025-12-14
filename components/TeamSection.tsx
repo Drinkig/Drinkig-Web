@@ -137,95 +137,137 @@ export function TeamSection() {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
-            {/* Creator Section (메인) */}
-            <motion.div 
-              className="lg:col-span-7"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="relative group mb-12">
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                <div className="relative bg-gray-900 border border-white/10 rounded-3xl p-8 sm:p-12 overflow-hidden">
-                  <div className="flex flex-col sm:flex-row gap-8 items-center sm:items-start">
+          {/* 레이아웃 변경: 상단 2단 (프로필 + 스토리) / 하단 1단 (Thanks) */}
+          <div className="flex flex-col gap-8">
+            
+            {/* 상단: Creator & Story */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+              
+              {/* 1. Creator Profile */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="h-full"
+              >
+                <div className="relative h-full bg-gray-900 border border-white/10 rounded-3xl p-8 sm:p-10 overflow-hidden flex flex-col justify-center">
+                  <div className="absolute -inset-1 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-3xl blur opacity-50 group-hover:opacity-75 transition duration-1000"></div>
+                  <div className="relative z-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start">
                     <div className="flex-shrink-0 relative">
-                      <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-white/10">
+                      <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl">
                         <ImageWithFallback
                           src={wiseungjuPhoto}
                           alt="위승주"
                           className="w-full h-full object-cover object-top"
                         />
                       </div>
-                      <div className="absolute -bottom-3 -right-3 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full border border-gray-900">
+                      <div className="absolute -bottom-2 -right-2 bg-white text-black text-[10px] font-bold px-2 py-0.5 rounded-full border border-gray-200 shadow-lg">
                         Creator
                       </div>
                     </div>
                     
-                    <div className="text-center sm:text-left">
-                      <h3 className="text-2xl font-bold text-white mb-2">위승주</h3>
-                      <p className="text-purple-400 font-medium mb-4">Founder & Product Maker</p>
-                      <p className="text-gray-400 leading-relaxed mb-6">
+                    <div className="text-center sm:text-left flex-1">
+                      <h3 className="text-2xl font-bold text-white mb-1">위승주</h3>
+                      <p className="text-purple-400 font-medium text-sm mb-4">Founder & Product Maker</p>
+                      <p className="text-gray-400 leading-relaxed text-sm mb-5 break-keep">
                         "개발자가 아닙니다. 오직 와인 시장의 문제를 해결하고 싶다는 마음 하나로 시작했습니다. 
-                        AI와 함께 기획부터 디자인, 그리고 코드 한 줄 한 줄까지 직접 빚어냈습니다.
-                        기술의 한계를 넘어, 진정성 있는 서비스를 만듭니다."
+                        기획부터 디자인, 코드까지 직접 빚어내며 진정성 있는 서비스를 만듭니다."
                       </p>
                       <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                        <span className="px-2.5 py-0.5 bg-white/5 border border-white/10 rounded-full text-[11px] text-gray-400 tracking-wide">Product Planning</span>
-                        <span className="px-2.5 py-0.5 bg-white/5 border border-white/10 rounded-full text-[11px] text-gray-400 tracking-wide">Vibe Coding</span>
-                        <span className="px-2.5 py-0.5 bg-white/5 border border-white/10 rounded-full text-[11px] text-gray-400 tracking-wide">Gastronomy Editor</span>
+                        <span className="px-2.5 py-0.5 bg-white/5 border border-white/10 rounded-full text-[10px] text-gray-400 tracking-wide">Product Planning</span>
+                        <span className="px-2.5 py-0.5 bg-white/5 border border-white/10 rounded-full text-[10px] text-gray-400 tracking-wide">Vibe Coding</span>
+                        <span className="px-2.5 py-0.5 bg-white/5 border border-white/10 rounded-full text-[10px] text-gray-400 tracking-wide">Gastronomy Editor</span>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Founder's Note Teaser */}
-              <div className="bg-gradient-to-br from-gray-900 to-black border border-white/10 rounded-3xl p-8 relative overflow-hidden group hover:border-purple-500/50 transition-colors cursor-pointer" onClick={() => setIsModalOpen(true)}>
-                <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <svg className="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.0171 16H6.01709V14H19.0171V7H15.0171C13.9125 7 13.0171 6.10457 13.0171 5V1H10.0171V12H4.01709V21H14.017ZM21.0171 21V5C21.0171 3.89543 20.1216 3 19.0171 3H15.0171V7H19.0171V21H21.0171Z"/></svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-4">Why I Restarted</h3>
-                <p className="text-2xl font-light text-gray-300 italic mb-6">
-                  "말은 같아도 맛은 다르다.<br/>
-                  나는 그 <span className="text-purple-400 font-semibold">언어의 간극</span>을 좁히고 싶었다."
-                </p>
-                <div className="flex items-center text-purple-400 font-medium group-hover:text-purple-300">
-                  Founder's Note 읽기 
-                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </div>
-              </div>
-            </motion.div>
+              {/* 2. Why I Restarted (Graphic Card) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="h-full"
+              >
+                <div className="relative rounded-3xl overflow-hidden group cursor-pointer h-full min-h-[320px]" onClick={() => setIsModalOpen(true)}>
+                  {/* 배경: Abstract Graphic */}
+                  <div className="absolute inset-0 bg-black">
+                    <motion.div 
+                      className="absolute top-1/4 -left-10 w-40 h-40 bg-blue-600 blur-[50px] opacity-60"
+                      animate={{ x: [0, 100, 0], y: [0, 30, 0], scale: [1, 1.2, 1] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <motion.div 
+                      className="absolute bottom-1/4 -right-10 w-40 h-40 bg-pink-600 blur-[50px] opacity-60"
+                      animate={{ x: [0, -100, 0], y: [0, -30, 0], scale: [1, 1.2, 1] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay"></div>
+                  </div>
 
-            {/* Contributors Section (서브) */}
+                  {/* 콘텐츠 */}
+                  <div className="absolute inset-0 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors p-8 flex flex-col justify-between z-10">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-2">Why I Restarted</h3>
+                        <div className="h-1 w-12 bg-purple-500 rounded-full"></div>
+                      </div>
+                      <div className="p-2 bg-white/10 rounded-full group-hover:bg-purple-500/20 transition-colors">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                      </div>
+                    </div>
+
+                    <div className="mt-auto">
+                      <p className="text-2xl font-light text-gray-200 leading-relaxed mb-6">
+                        "말은 같아도 맛은 다르다.<br/>
+                        나는 그 <span className="text-purple-400 font-bold">언어의 간극</span>을<br/>
+                        좁히고 싶었다."
+                      </p>
+                      <div className="flex items-center text-xs text-gray-400 font-medium uppercase tracking-wider">
+                        <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2 animate-pulse"></span>
+                        Read Founder's Note
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* 하단: Special Thanks to (Full Width) */}
             <motion.div 
-              className="lg:col-span-5"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm sticky top-24">
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                  <span className="w-2 h-8 bg-purple-500 rounded-full mr-3"></span>
-                  Special Thanks to
-                </h3>
-                <p className="text-gray-400 text-sm mb-6">
-                  드링키지의 첫 시작을 함께하며<br/>
-                  소중한 기반을 다져준 초기 멤버들입니다.
-                </p>
+              <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                  <div>
+                    <h3 className="text-xl font-bold text-white flex items-center">
+                      <span className="w-1.5 h-6 bg-purple-500 rounded-full mr-3"></span>
+                      Special Thanks to
+                    </h3>
+                    <p className="text-gray-400 text-sm mt-2">
+                      드링키지의 첫 시작을 함께하며 소중한 기반을 다져준 초기 멤버들입니다.
+                    </p>
+                  </div>
+                </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                   {contributors.map((member, index) => (
-                    <div key={index} className="flex items-center space-x-2 text-gray-300 text-sm group">
-                      <span className="w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-purple-500 transition-colors"></span>
-                      <span>{member}</span>
+                    <div key={index} className="flex items-center space-x-2 text-gray-300 text-xs group p-3 rounded-full hover:bg-white/5 transition-colors cursor-default">
+                      <span className="w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-purple-500 transition-colors flex-shrink-0"></span>
+                      <span className="truncate">{member}</span>
                     </div>
                   ))}
                 </div>
               </div>
             </motion.div>
+
           </div>
         </div>
       </div>

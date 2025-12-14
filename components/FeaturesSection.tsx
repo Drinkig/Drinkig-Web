@@ -113,11 +113,11 @@ export function FeaturesSection() {
                 {/* 타이틀 & 설명 영역 (아이콘 제거, 심플함 강조) */}
                 <div className="flex flex-col items-center text-center mb-8 mt-4">
                   <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-purple-200 transition-colors">
-                    {feature.title}
-                  </h3>
+                  {feature.title}
+                </h3>
                   <p className="text-gray-400 whitespace-pre-line leading-relaxed text-sm group-hover:text-gray-300 transition-colors">
-                    {feature.description}
-                  </p>
+                  {feature.description}
+                </p>
                 </div>
 
                 {/* 이미지 영역 (하단 고정 및 중앙 정렬) */}
