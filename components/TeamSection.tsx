@@ -7,12 +7,7 @@ import { X } from "lucide-react";
 const wiseungjuPhoto = "/images/lead_sean.jpeg";
 
 // 초기 멤버 리스트
-const contributors = [
-  "박정연 (Backend Lead)", "윤다영 (Backend)", "박상욱 (Backend)",
-  "전채운 (PM)", "김도연 (Frontend Lead)", "이예성 (Frontend)", 
-  "이현주 (Frontend)", "천윤화 (Design Lead)", "배하영 (Designer)", 
-  "윤시은 (Designer)"
-];
+
 
 // Founder's Note 내용
 const StoryModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
@@ -237,36 +232,7 @@ export function TeamSection() {
               </motion.div>
             </div>
 
-            {/* 하단: Special Thanks to (Full Width) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-                  <div>
-                    <h3 className="text-xl font-bold text-white flex items-center">
-                      <span className="w-1.5 h-6 bg-purple-500 rounded-full mr-3"></span>
-                      Special Thanks to
-                    </h3>
-                    <p className="text-gray-400 text-sm mt-2">
-                      드링키지의 첫 시작을 함께하며 소중한 기반을 다져준 초기 멤버들입니다.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                  {contributors.map((member, index) => (
-                    <div key={index} className="flex items-center space-x-2 text-gray-300 text-xs group p-3 rounded-full hover:bg-white/5 transition-colors cursor-default">
-                      <span className="w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-purple-500 transition-colors flex-shrink-0"></span>
-                      <span className="truncate">{member}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+
 
           </div>
         </div>
