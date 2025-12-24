@@ -15,14 +15,14 @@ const StoryModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
   return (
     <AnimatePresence>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-sm"
         onClick={onClose}
       >
-        <motion.div 
+        <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 50, opacity: 0 }}
@@ -35,7 +35,7 @@ const StoryModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               <h3 className="text-xl font-bold text-white">먼지 속에서 찾은 문제</h3>
               <p className="text-sm text-gray-500">Founder's Note</p>
             </div>
-            <button 
+            <button
               onClick={onClose}
               className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
             >
@@ -45,7 +45,7 @@ const StoryModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
           {/* 본문 (스크롤) */}
           <div className="overflow-y-auto p-6 sm:p-10 space-y-8 text-gray-300 leading-relaxed font-light scrollbar-hide">
-            
+
             {/* 섹션 1: 문제의 발견 */}
             <div className="space-y-4">
               <h4 className="text-2xl font-bold text-white mb-6">문제의 본질을 다시 보다</h4>
@@ -64,14 +64,14 @@ const StoryModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             <div className="space-y-4">
               <h4 className="text-xl font-bold text-purple-400">말은 같아도 맛은 다르다</h4>
               <p>
-                와인을 처음 접하는 사람들은 비슷한 어려움 앞에서 멈칫한다. 
+                와인을 처음 접하는 사람들은 비슷한 어려움 앞에서 멈칫한다.
                 추천을 받을 때 “단 게 좋아요”라고 말하지만, 와인을 오래 마신 사람이 말하는 단맛이나 부드러움은 전혀 다른 감각의 스케일을 가리킨다.
               </p>
               <blockquote className="border-l-4 border-purple-500 pl-4 italic text-gray-400 my-6">
                 "겉으로는 같은 단어를 쓰지만, 입문자가 기대하는 ‘단맛’과 추천자가 말하는 ‘단맛’은 서로 다른 세계에 놓여 있다."
               </blockquote>
               <p>
-                이 작은 불일치는 첫 경험의 방향을 크게 틀어놓는다. 
+                이 작은 불일치는 첫 경험의 방향을 크게 틀어놓는다.
                 입문자는 자신에게 맞지 않는 와인을 마주하게 되고, “와인은 나와 안 맞는다”는 결론으로 쉽게 이어진다.
               </p>
             </div>
@@ -82,7 +82,7 @@ const StoryModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             <div className="space-y-4">
               <h4 className="text-xl font-bold text-purple-400">감각의 번역기</h4>
               <p>
-                결국 문제는 추천이나 선택의 기술 이전에, 초보자와 추천자 사이의 감각 언어 자체가 맞지 않는 데 있었다. 
+                결국 문제는 추천이나 선택의 기술 이전에, 초보자와 추천자 사이의 감각 언어 자체가 맞지 않는 데 있었다.
                 나는 이 간극을 수정하고 싶었다.
               </p>
               <p>
@@ -93,7 +93,7 @@ const StoryModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                 그것이 드링키지가 존재하는 이유이자, 우리가 만드는 서비스의 본질이다.
               </p>
             </div>
-            
+
             <div className="pt-10 pb-4 text-right">
               <p className="text-sm text-gray-500">Dec 13. 2025</p>
               <p className="font-script text-xl text-purple-400 mt-2">Founder. Wiseungju</p>
@@ -111,13 +111,13 @@ export function TeamSection() {
   return (
     <section id="team" className="py-24 bg-black relative overflow-hidden">
       <StoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      
+
       {/* 배경 효과 */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -125,7 +125,7 @@ export function TeamSection() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
-              만든 사람들
+              Creator
             </h2>
             <p className="text-lg text-gray-400">
               와인 문화를 바꾸기 위한 열정으로 시작했습니다.
@@ -134,12 +134,12 @@ export function TeamSection() {
 
           {/* 레이아웃 변경: 상단 2단 (프로필 + 스토리) / 하단 1단 (Thanks) */}
           <div className="flex flex-col gap-8">
-            
+
             {/* 상단: Creator & Story */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-              
+
               {/* 1. Creator Profile */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -161,12 +161,12 @@ export function TeamSection() {
                         Creator
                       </div>
                     </div>
-                    
+
                     <div className="text-center sm:text-left flex-1">
                       <h3 className="text-2xl font-bold text-white mb-1">위승주</h3>
                       <p className="text-purple-400 font-medium text-sm mb-4">Founder & Product Maker</p>
                       <p className="text-gray-400 leading-relaxed text-sm mb-5 break-keep">
-                        "개발자가 아닙니다. 오직 와인 시장의 문제를 해결하고 싶다는 마음 하나로 시작했습니다. 
+                        "개발자가 아닙니다. 오직 와인 시장의 문제를 해결하고 싶다는 마음 하나로 시작했습니다.
                         기획부터 디자인, 코드까지 직접 빚어내며 진정성 있는 서비스를 만듭니다."
                       </p>
                       <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
@@ -180,7 +180,7 @@ export function TeamSection() {
               </motion.div>
 
               {/* 2. Why I Restarted (Graphic Card) */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -190,12 +190,12 @@ export function TeamSection() {
                 <div className="relative rounded-3xl overflow-hidden group cursor-pointer h-full min-h-[320px]" onClick={() => setIsModalOpen(true)}>
                   {/* 배경: Abstract Graphic */}
                   <div className="absolute inset-0 bg-black">
-                    <motion.div 
+                    <motion.div
                       className="absolute top-1/4 -left-10 w-40 h-40 bg-blue-600 blur-[50px] opacity-60"
                       animate={{ x: [0, 100, 0], y: [0, 30, 0], scale: [1, 1.2, 1] }}
                       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                     />
-                    <motion.div 
+                    <motion.div
                       className="absolute bottom-1/4 -right-10 w-40 h-40 bg-pink-600 blur-[50px] opacity-60"
                       animate={{ x: [0, -100, 0], y: [0, -30, 0], scale: [1, 1.2, 1] }}
                       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -218,8 +218,8 @@ export function TeamSection() {
 
                     <div className="mt-auto">
                       <p className="text-2xl font-light text-gray-200 leading-relaxed mb-6">
-                        "말은 같아도 맛은 다르다.<br/>
-                        나는 그 <span className="text-purple-400 font-bold">언어의 간극</span>을<br/>
+                        "말은 같아도 맛은 다르다.<br />
+                        나는 그 <span className="text-purple-400 font-bold">언어의 간극</span>을<br />
                         좁히고 싶었다."
                       </p>
                       <div className="flex items-center text-xs text-gray-400 font-medium uppercase tracking-wider">
