@@ -64,6 +64,7 @@ export function Footer() {
             <p>이메일: drinkeasyy@gmail.com</p>
 
             <div className="flex justify-center gap-6 pt-4 pb-2">
+              <Link to="/notices" className="hover:text-gray-300 transition-colors">공지사항</Link>
               <Link to="/terms" className="hover:text-gray-300 transition-colors">이용약관</Link>
               <Link to="/privacy" className="hover:text-gray-300 transition-colors">개인정보 처리방침</Link>
             </div>

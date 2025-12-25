@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./components/Home";
 import { TermsOfService } from "./components/TermsOfService";
 import { PrivacyPolicy } from "./components/PrivacyPolicy";
+import { Notices } from "./components/Notices";
+import { NoticeDetail } from "./components/NoticeDetail";
 import { Toaster } from "./components/ui/sonner";
 import { ScrollToTop } from "./components/ScrollToTop";
 
@@ -14,6 +16,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/notices" element={<Notices />} />
+          <Route path="/notices/:id" element={<NoticeDetail />} />
         </Routes>
         <Toaster />
       </div>
