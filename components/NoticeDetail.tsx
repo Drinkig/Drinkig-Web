@@ -19,6 +19,15 @@ export function NoticeDetail() {
         );
     }
 
+    const formatContent = (content: string) => {
+        return content.split(/(\*\*.*?\*\*)/g).map((part, index) => {
+            if (part.startsWith('**') && part.endsWith('**')) {
+                return <strong key={index} className="text-white block mt-4 mb-2">{part.slice(2, -2)}</strong>;
+            }
+            return part;
+        });
+    };
+
     return (
         <div className="min-h-screen bg-black text-white pt-8 pb-20 px-4">
             <div className="container mx-auto max-w-2xl">
@@ -36,7 +45,7 @@ export function NoticeDetail() {
                 </div>
 
                 <div className="text-gray-300 whitespace-pre-wrap leading-relaxed min-h-[50vh]">
-                    {notice.content}
+                    {formatContent(notice.content)}
                 </div>
 
                 <div className="border-t border-white/10 pt-8 mt-8 text-center">
