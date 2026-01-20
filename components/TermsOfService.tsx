@@ -16,7 +16,7 @@ export function TermsOfService() {
                 </Button>
 
                 <h1 className="text-2xl font-bold mb-2">드링키지(Drinkig) 서비스 이용약관</h1>
-                <p className="text-sm text-gray-500 mb-8">시행일: 2025년 12월 31일</p>
+                <p className="text-sm text-gray-500 mb-8">시행일: 2026년 1월 21일</p>
 
                 <div className="space-y-8 text-sm leading-relaxed text-gray-300">
                     <section>
@@ -45,10 +45,15 @@ export function TermsOfService() {
 
                     <section>
                         <h2 className="text-lg font-semibold mb-3 text-white">제4조 (서비스의 제공 및 변경)</h2>
+                        <p className="mb-2">회사는 회원에게 다음의 서비스를 제공합니다.</p>
                         <ul className="list-disc pl-5 space-y-2">
-                            <li>회사는 회원에게 와인 정보 검색, 개인별 와인 취향 분석 및 추천, 테이스팅 노트 작성 및 커뮤니티 서비스를 제공합니다.</li>
-                            <li>회사는 운영상, 기술상의 필요에 따라 서비스의 전부 또는 일부를 변경하거나 중단할 수 있으며, 이 경우 앱 내 공지사항을 통해 사전에 공지합니다.</li>
+                            <li>와인 정보 검색</li>
+                            <li>개인별 와인 취향 분석 및 추천</li>
+                            <li>테이스팅 노트 작성 및 커뮤니티 서비스</li>
+                            <li>광고 및 프로모션 제공 (신설)</li>
+                            <li>기타 회사가 정하는 업무</li>
                         </ul>
+                        <p className="mt-2">회사는 운영상, 기술상의 필요에 따라 서비스의 전부 또는 일부를 변경하거나 중단할 수 있으며, 이 경우 앱 내 공지사항을 통해 사전에 공지합니다.</p>
                     </section>
 
                     <section>
@@ -69,7 +74,15 @@ export function TermsOfService() {
                     </section>
 
                     <section>
-                        <h2 className="text-lg font-semibold mb-3 text-white">제7조 (사업자 정보 및 연락처)</h2>
+                        <h2 className="text-lg font-semibold mb-3 text-white">제7조 (정보의 제공 및 광고의 게재) (신설)</h2>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li>회사는 서비스 운영과 관련하여 서비스 화면, 홈페이지, 앱 내 알림 등에 광고를 게재할 수 있습니다.</li>
+                            <li>회원이 서비스상에 게재되어 있는 광고를 이용하거나 광고주와 교신·거래하는 것은 전적으로 회원과 광고주 간의 문제입니다. 따라서 이와 관련하여 발생하는 손해나 분쟁에 대해 회사는 어떠한 책임도 지지 않습니다.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 className="text-lg font-semibold mb-3 text-white">제8조 (사업자 정보 및 연락처)</h2>
                         <p className="mb-2">회사의 신원정보는 다음과 같습니다.</p>
                         <ul className="space-y-1">
                             <li>상호: 고메블 (Gourmevel)</li>
@@ -82,7 +95,7 @@ export function TermsOfService() {
 
                     <section className="pt-8 border-t border-white/10">
                         <h2 className="text-lg font-semibold mb-3 text-white">부칙</h2>
-                        <p>본 약관은 2025년 12월 31일부터 시행합니다.</p>
+                        <p>본 약관은 2026년 1월 21일부터 시행합니다.</p>
                     </section>
                 </div>
             </div>
