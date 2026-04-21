@@ -34,23 +34,23 @@ const translations = {
 
     "features.match.title": "취향 매칭 점수",
     "features.match.subtitle": "별점이 아닌 나만의 점수",
-    "features.match.desc": "다른 사람의 별점 대신, 내 취향 데이터를 기반으로 모든 와인에 매칭 점수를 산출합니다. 92점짜리 와인은 나에게 딱 맞는 와인이에요.",
+    "features.match.desc": "다른 사람의 별점 대신,\n내 취향 데이터를 기반으로 모든 와인에 매칭 점수를 산출합니다.",
 
     "features.scan.title": "라벨 & 리스트 스캔",
     "features.scan.subtitle": "찍으면 바로 점수 확인",
-    "features.scan.desc": "와인 라벨이나 레스토랑 와인 리스트를 카메라로 촬영하세요. 자동으로 인식해서 매칭 점수순으로 정렬해 보여드립니다.",
+    "features.scan.desc": "와인 라벨이나 레스토랑 와인 리스트를 카메라로 촬영하세요.\n자동으로 인식해서 매칭 점수순으로 정렬해 보여드립니다.",
 
     "features.chat.title": "음식 페어링 챗봇",
     "features.chat.subtitle": "음식에 어울리는 와인 추천",
-    "features.chat.desc": "\"스테이크에 어울리는 와인 뭐가 있어?\" 라고 물어보세요. AI 챗봇이 음식과 완벽하게 어울리는 와인을 추천해드립니다.",
+    "features.chat.desc": "\"스테이크에 어울리는 와인 뭐가 있어?\" 라고 물어보세요.\nAI 챗봇이 음식과 완벽하게 어울리는 와인을 추천해드립니다.",
 
     "features.note.title": "테이스팅 노트",
     "features.note.subtitle": "감각적인 와인 기록",
-    "features.note.desc": "마신 와인의 맛과 향을 키워드로 간편하게 기록하세요. 기록이 쌓일수록 매칭 점수도 더 정확해집니다.",
+    "features.note.desc": "마신 와인의 맛과 향을 키워드로 간편하게 기록하세요.\n기록이 쌓일수록 매칭 점수도 더 정확해집니다.",
 
     "features.cellar.title": "마이 셀러",
     "features.cellar.subtitle": "내 와인 컬렉션 관리",
-    "features.cellar.desc": "보유 중인 와인을 한눈에 관리하세요. 언제 마실지, 어떤 와인이 있는지 깔끔하게 정리됩니다.",
+    "features.cellar.desc": "보유 중인 와인을 한눈에 관리하세요.\n언제 마실지, 어떤 와인이 있는지 깔끔하게 정리됩니다.",
 
     // Why
     "why.title": "왜 드링키지인가요?",
@@ -105,23 +105,23 @@ const translations = {
 
     "features.match.title": "Taste Match Score",
     "features.match.subtitle": "Your score, not ratings",
-    "features.match.desc": "Instead of generic star ratings, every wine gets a personal match score based on your taste data. A 92-point wine is one that's perfect for you.",
+    "features.match.desc": "Instead of generic star ratings,\nevery wine gets a personal match score based on your taste data.",
 
     "features.scan.title": "Label & List Scan",
     "features.scan.subtitle": "Snap and see scores",
-    "features.scan.desc": "Point your camera at a wine label or restaurant wine list. We'll recognize them instantly and sort by your match score.",
+    "features.scan.desc": "Point your camera at a wine label or restaurant wine list.\nWe'll recognize them instantly and sort by your match score.",
 
     "features.chat.title": "Food Pairing Chat",
     "features.chat.subtitle": "Wine meets food",
-    "features.chat.desc": "Ask \"What goes with steak?\" and our AI chatbot will recommend wines that pair perfectly with your meal.",
+    "features.chat.desc": "Ask \"What goes with steak?\"\nand our AI chatbot will recommend wines that pair perfectly with your meal.",
 
     "features.note.title": "Tasting Notes",
     "features.note.subtitle": "Record your experience",
-    "features.note.desc": "Log flavors and aromas with simple keywords. The more you record, the more accurate your match scores become.",
+    "features.note.desc": "Log flavors and aromas with simple keywords.\nThe more you record, the more accurate your match scores become.",
 
     "features.cellar.title": "My Cellar",
     "features.cellar.subtitle": "Manage your collection",
-    "features.cellar.desc": "Keep track of your wines at a glance. See what you have, plan when to drink, and stay organized.",
+    "features.cellar.desc": "Keep track of your wines at a glance.\nSee what you have, plan when to drink, and stay organized.",
 
     // Why
     "why.title": "Why Drinkig?",

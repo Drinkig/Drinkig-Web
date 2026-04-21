@@ -71,7 +71,7 @@ export function FeaturesSection() {
                   <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
                     {t(feature.titleKey as any)}
                   </h3>
-                  <p className="text-gray-400 leading-relaxed max-w-md mx-auto lg:mx-0 text-[15px]">
+                  <p className="text-gray-400 leading-relaxed max-w-md mx-auto lg:mx-0 text-[15px] whitespace-pre-line">
                     {t(feature.descKey as any)}
                   </p>
                 </div>
