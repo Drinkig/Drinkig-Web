@@ -26,7 +26,7 @@ export function Header() {
       )}
     >
       <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center justify-between">
+        <div className="relative flex items-center justify-between">
           <a href="#" className="flex items-center">
             <img
               src={drinkeasyLogo}
@@ -35,7 +35,7 @@ export function Header() {
             />
           </a>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             <a href="#features" className="text-sm text-gray-400 hover:text-white transition-colors">
               {t("nav.features")}
             </a>
@@ -51,7 +51,7 @@ export function Header() {
             href="https://apps.apple.com/kr/app/%EB%93%9C%EB%A7%81%ED%82%A4%EC%A7%80/id6741486172"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-white bg-white/10 hover:bg-white/15 px-5 py-2.5 rounded-full transition-colors"
+            className="text-sm font-medium text-white bg-purple-600 hover:bg-purple-500 px-5 py-2.5 rounded-full transition-colors"
           >
             {t("nav.download")}
           </a>

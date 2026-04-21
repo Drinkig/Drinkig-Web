@@ -54,17 +54,24 @@ export function FeaturesSection() {
           {featureList.map((feature, index) => {
             const colors = colorMap[feature.color];
             const { Illust } = feature;
+            const isEven = index % 2 === 0;
             return (
               <motion.div
                 key={index}
-                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 lg:gap-14 p-8 md:p-12 rounded-[2rem] bg-gradient-to-br ${colors.bg} border ${colors.border}`}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
+                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 lg:gap-14 p-8 md:p-12 rounded-[2rem] bg-gradient-to-br ${colors.bg} border ${colors.border}`}
+                initial={{ opacity: 0, x: isEven ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.3 }}
               >
                 {/* 텍스트 */}
-                <div className="flex-1 text-center lg:text-left">
+                <motion.div
+                  className="flex-1 text-center lg:text-left"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                >
                   <p className="text-sm text-purple-400 font-medium mb-2 tracking-wide">
                     {t(feature.subtitleKey as any)}
                   </p>
@@ -74,12 +81,18 @@ export function FeaturesSection() {
                   <p className="text-gray-400 leading-relaxed max-w-md mx-auto lg:mx-0 text-[15px] whitespace-pre-line">
                     {t(feature.descKey as any)}
                   </p>
-                </div>
+                </motion.div>
 
                 {/* 일러스트 */}
-                <div className="flex-shrink-0">
+                <motion.div
+                  className="flex-shrink-0"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                >
                   <Illust className="w-[200px] h-[200px] md:w-[240px] md:h-[240px]" />
-                </div>
+                </motion.div>
               </motion.div>
             );
           })}

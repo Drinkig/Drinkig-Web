@@ -80,7 +80,7 @@ export function WhyDrinkig() {
               <h3 className="text-lg font-semibold text-white mb-2.5">
                 {t(point.titleKey)}
               </h3>
-              <p className="text-gray-500 leading-relaxed text-[15px]">
+              <p className="text-gray-500 leading-relaxed text-[15px] whitespace-pre-line">
                 {t(point.descKey)}
               </p>
             </motion.div>
