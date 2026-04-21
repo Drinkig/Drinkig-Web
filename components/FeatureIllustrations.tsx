@@ -119,30 +119,30 @@ export function CellarIllust({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
       {/* 선반 구조 */}
-      <line x1="40" y1="90" x2="200" y2="90" stroke="#a78bfa" strokeWidth="1.5" opacity="0.3" />
-      <line x1="40" y1="150" x2="200" y2="150" stroke="#a78bfa" strokeWidth="1.5" opacity="0.3" />
-      <line x1="40" y1="210" x2="200" y2="210" stroke="#a78bfa" strokeWidth="1.5" opacity="0.3" />
+      <line x1="40" y1="90" x2="200" y2="90" stroke="#c4b5fd" strokeWidth="1.5" opacity="0.4" />
+      <line x1="40" y1="150" x2="200" y2="150" stroke="#c4b5fd" strokeWidth="1.5" opacity="0.4" />
+      <line x1="40" y1="210" x2="200" y2="210" stroke="#c4b5fd" strokeWidth="1.5" opacity="0.4" />
       {/* 상단 선반 - 와인 병들 */}
-      <rect x="55" y="55" width="20" height="35" rx="4" fill="#a78bfa" opacity="0.2" stroke="#a78bfa" strokeWidth="0.8" />
-      <rect x="60" y="45" width="10" height="12" rx="2" fill="#a78bfa" opacity="0.15" />
-      <rect x="85" y="60" width="20" height="30" rx="4" fill="#c084fc" opacity="0.15" stroke="#c084fc" strokeWidth="0.8" />
-      <rect x="90" y="50" width="10" height="12" rx="2" fill="#c084fc" opacity="0.1" />
-      <rect x="115" y="52" width="20" height="38" rx="4" fill="#f472b6" opacity="0.15" stroke="#f472b6" strokeWidth="0.8" />
-      <rect x="120" y="42" width="10" height="12" rx="2" fill="#f472b6" opacity="0.1" />
-      <rect x="145" y="58" width="20" height="32" rx="4" fill="#fbbf24" opacity="0.15" stroke="#fbbf24" strokeWidth="0.8" />
-      <rect x="150" y="48" width="10" height="12" rx="2" fill="#fbbf24" opacity="0.1" />
+      <rect x="55" y="55" width="20" height="35" rx="4" fill="#a78bfa" opacity="0.35" stroke="#c4b5fd" strokeWidth="1" />
+      <rect x="60" y="45" width="10" height="12" rx="2" fill="#a78bfa" opacity="0.3" />
+      <rect x="85" y="60" width="20" height="30" rx="4" fill="#c084fc" opacity="0.35" stroke="#d8b4fe" strokeWidth="1" />
+      <rect x="90" y="50" width="10" height="12" rx="2" fill="#c084fc" opacity="0.3" />
+      <rect x="115" y="52" width="20" height="38" rx="4" fill="#f472b6" opacity="0.35" stroke="#f9a8d4" strokeWidth="1" />
+      <rect x="120" y="42" width="10" height="12" rx="2" fill="#f472b6" opacity="0.3" />
+      <rect x="145" y="58" width="20" height="32" rx="4" fill="#fbbf24" opacity="0.35" stroke="#fcd34d" strokeWidth="1" />
+      <rect x="150" y="48" width="10" height="12" rx="2" fill="#fbbf24" opacity="0.3" />
       {/* 중간 선반 */}
-      <rect x="55" y="115" width="20" height="35" rx="4" fill="#34d399" opacity="0.15" stroke="#34d399" strokeWidth="0.8" />
-      <rect x="60" y="105" width="10" height="12" rx="2" fill="#34d399" opacity="0.1" />
-      <rect x="85" y="118" width="20" height="32" rx="4" fill="#a78bfa" opacity="0.15" stroke="#a78bfa" strokeWidth="0.8" />
-      <rect x="90" y="108" width="10" height="12" rx="2" fill="#a78bfa" opacity="0.1" />
+      <rect x="55" y="115" width="20" height="35" rx="4" fill="#34d399" opacity="0.35" stroke="#6ee7b7" strokeWidth="1" />
+      <rect x="60" y="105" width="10" height="12" rx="2" fill="#34d399" opacity="0.3" />
+      <rect x="85" y="118" width="20" height="32" rx="4" fill="#a78bfa" opacity="0.35" stroke="#c4b5fd" strokeWidth="1" />
+      <rect x="90" y="108" width="10" height="12" rx="2" fill="#a78bfa" opacity="0.3" />
       {/* + 버튼 */}
-      <rect x="125" y="120" width="30" height="28" rx="8" fill="none" stroke="#a78bfa" strokeWidth="1" strokeDasharray="3 3" opacity="0.3" />
-      <line x1="140" y1="128" x2="140" y2="142" stroke="#a78bfa" strokeWidth="1.5" opacity="0.3" />
-      <line x1="133" y1="135" x2="147" y2="135" stroke="#a78bfa" strokeWidth="1.5" opacity="0.3" />
+      <rect x="125" y="120" width="30" height="28" rx="8" fill="#a78bfa" opacity="0.08" stroke="#c4b5fd" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
+      <line x1="140" y1="128" x2="140" y2="142" stroke="#c4b5fd" strokeWidth="1.5" opacity="0.5" />
+      <line x1="133" y1="135" x2="147" y2="135" stroke="#c4b5fd" strokeWidth="1.5" opacity="0.5" />
       {/* 하단 선반 - 카운트 */}
-      <text x="70" y="185" fill="#a78bfa" fontSize="11" fontFamily="system-ui" opacity="0.6">보유 6병</text>
-      <text x="70" y="200" fill="#71717a" fontSize="9" fontFamily="system-ui">마신 와인 12병</text>
+      <text x="70" y="185" fill="#c4b5fd" fontSize="11" fontFamily="system-ui" opacity="0.8">보유 6병</text>
+      <text x="70" y="200" fill="#a1a1aa" fontSize="9" fontFamily="system-ui">마신 와인 12병</text>
     </svg>
   );
 }
