@@ -1,7 +1,9 @@
 import { Header } from "./Header";
 import { HeroSection } from "./HeroSection";
+import { HowItWorks } from "./HowItWorks";
 import { FeaturesSection } from "./FeaturesSection";
-import { TeamSection } from "./TeamSection";
+import { WhyDrinkig } from "./WhyDrinkig";
+import { CtaSection } from "./CtaSection";
 import { Footer } from "./Footer";
 
 export function Home() {
@@ -10,8 +12,10 @@ export function Home() {
             <Header />
             <main>
                 <HeroSection />
+                <HowItWorks />
                 <FeaturesSection />
-                <TeamSection />
+                <WhyDrinkig />
+                <CtaSection />
             </main>
             <Footer />
         </>

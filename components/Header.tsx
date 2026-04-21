@@ -1,7 +1,5 @@
-import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import { cn } from "./ui/utils";
-import { motion } from "motion/react";
 
 const drinkeasyLogo = "/images/drinkeasy-logo.png";
 
@@ -16,63 +14,47 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuItems = [
-    { label: "홈", href: "#home" },
-    { label: "기능", href: "#features" },
-    { label: "팀 소개", href: "#team" },
-
-  ];
-
   return (
-    <motion.header
+    <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out border-b border-transparent",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-black/50 backdrop-blur-xl border-white/5 py-3"
-          : "bg-transparent py-5"
+          ? "bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5 py-4"
+          : "bg-transparent py-6"
       )}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative flex items-center justify-between h-10">
-          <a href="#" className="flex items-center gap-2 group relative z-10">
-            <div className="relative">
-              <div className="absolute inset-0 bg-purple-500 blur-lg opacity-20 group-hover:opacity-40 transition-opacity rounded-full"></div>
-              <img
-                src={drinkeasyLogo}
-                alt="드링키지"
-                className="h-8 w-auto relative z-10 brightness-0 invert"
-              />
-            </div>
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="flex items-center justify-between">
+          <a href="#" className="flex items-center">
+            <img
+              src={drinkeasyLogo}
+              alt="드링키지"
+              className="h-7 w-auto brightness-0 invert"
+            />
           </a>
 
-          {/* 중앙 정렬을 위한 Absolute Positioning */}
-          <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center gap-1 bg-white/5 px-2 py-1.5 rounded-full border border-white/10 backdrop-blur-sm z-0">
-            {menuItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm font-medium text-gray-400 hover:text-white px-4 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
-              >
-                {item.label}
-              </a>
-            ))}
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="#features" className="text-sm text-gray-400 hover:text-white transition-colors">
+              기능
+            </a>
+            <a href="#how-it-works" className="text-sm text-gray-400 hover:text-white transition-colors">
+              사용 방법
+            </a>
+            <a href="#why" className="text-sm text-gray-400 hover:text-white transition-colors">
+              드링키지란
+            </a>
           </nav>
 
-          <div className="flex items-center gap-3 relative z-10">
-            <Button
-              variant="outline"
-              size="sm"
-              className="hidden sm:inline-flex border-purple-500/30 hover:border-purple-500 text-purple-300 hover:text-purple-200 hover:bg-purple-500/10 transition-all duration-300"
-              onClick={() => window.open('https://apps.apple.com/kr/app/%EB%93%9C%EB%A7%81%ED%82%A4%EC%A7%80/id6741486172', '_blank')}
-            >
-              앱 다운로드
-            </Button>
-          </div>
+          <a
+            href="https://apps.apple.com/kr/app/%EB%93%9C%EB%A7%81%ED%82%A4%EC%A7%80/id6741486172"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-white bg-white/10 hover:bg-white/15 px-5 py-2.5 rounded-full transition-colors"
+          >
+            다운로드
+          </a>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }

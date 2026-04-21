@@ -1,119 +1,76 @@
-import { Button } from "./ui/button";
 import { motion } from "motion/react";
-import { Badge } from "./ui/badge";
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-[#030213] pt-32 sm:pt-40">
-      {/* Background Effects */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-[#030213]"></div>
-      </div>
+    <section className="relative min-h-screen flex items-center bg-[#0a0a0a] pt-24 pb-20 overflow-hidden">
+      {/* 배경 그라데이션 - 은은하게 */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-900/20 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-900/15 rounded-full blur-[120px] translate-y-1/3 -translate-x-1/4" />
 
-      <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
-          
+      <div className="max-w-6xl mx-auto px-6 w-full relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+          {/* 텍스트 영역 */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            className="flex-1 text-center lg:text-left"
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-8"
+            transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-gray-300 backdrop-blur-xl">
-              <span className="mr-2 flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+            <div className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/20 rounded-full px-4 py-1.5 mb-6">
+              <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
+              <span className="text-purple-300 text-sm font-medium">와인을 이지하게</span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-white leading-[1.2] mb-6">
+              어려운 와인 용어 대신,
+              <br />
+              <span className="bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+                일상의 언어로 찾는 와인
               </span>
-              New Standard of Wine Experience
+            </h1>
+            <p className="text-lg text-gray-400 max-w-lg mb-10 leading-relaxed mx-auto lg:mx-0">
+              "달콤한", "부드러운" 같은 내 언어로 취향을 말하면,
+              소믈리에 수준의 추천을 받을 수 있어요.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+              <a
+                href="https://apps.apple.com/kr/app/%EB%93%9C%EB%A7%81%ED%82%A4%EC%A7%80/id6741486172"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center h-14 px-7 bg-white text-black font-semibold rounded-full hover:shadow-lg hover:shadow-white/10 transition-all"
+              >
+                <svg className="w-5 h-5 mr-2.5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                App Store에서 다운로드
+              </a>
+              <a
+                href="#how-it-works"
+                className="inline-flex items-center justify-center h-14 px-7 text-gray-300 border border-white/10 rounded-full hover:border-white/25 hover:bg-white/5 transition-all"
+              >
+                어떻게 작동하나요?
+              </a>
             </div>
           </motion.div>
 
-          <motion.h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8"
-            initial={{ opacity: 0, y: 20 }}
+          {/* 목업 이미지 */}
+          <motion.div
+            className="flex-shrink-0 relative"
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <span className="block text-white -mb-1 md:-mb-2 text-3xl md:text-5xl lg:text-6xl leading-tight">어려운 와인 용어 대신</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient-x bg-[length:200%_auto] text-4xl md:text-6xl lg:text-7xl leading-tight">
-              일상의 언어로 찾는 와인
-            </span>
-          </motion.h1>
-
-          <motion.p 
-            className="text-lg md:text-xl text-gray-400 max-w-2xl mb-12 leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            추상적인 맛의 표현을 직관적인 일상 언어로.
-            <br className="hidden sm:block" />
-            전문가와 초보자의 간극을 좁혀, 당신에게 꼭 맞는 와인을 찾아드립니다.
-          </motion.p>
-
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-20"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <Button 
-              size="lg" 
-              className="h-14 px-8 text-lg bg-white text-black hover:bg-gray-100 rounded-full transition-all hover:scale-105"
-              onClick={() => window.open('https://apps.apple.com/kr/app/%EB%93%9C%EB%A7%81%ED%82%A4%EC%A7%80/id6741486172', '_blank')}
-            >
-              <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-              </svg>
-              App Store에서 다운로드
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="h-14 px-8 text-lg border-white/20 text-white hover:bg-white/10 rounded-full backdrop-blur-sm"
-              onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              더 알아보기
-            </Button>
-          </motion.div>
-
-          {/* App Mockup Visual (Direct & Intuitive) */}
-          <motion.div 
-            className="relative w-full max-w-[600px] mx-auto mt-12 mb-20 flex justify-center"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            {/* Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-purple-600/30 blur-[100px] rounded-full -z-10"></div>
-            
-            {/* Mockup Image with Float Animation */}
-            <motion.div
-              animate={{ y: [-10, 10, -10] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-10 flex justify-center"
-            >
-              <img 
-                src="/images/Mockup.png" 
-                alt="Drinkig App Mockup" 
-                className="w-full h-auto drop-shadow-2xl" 
-              />
-            </motion.div>
+            {/* 이미지 뒤 은은한 빛 */}
+            <div className="absolute inset-0 bg-purple-500/20 blur-[80px] rounded-full scale-75" />
+            <img
+              src="/images/Mockup.png"
+              alt="드링키지 앱 화면"
+              className="relative w-[280px] md:w-[340px] h-auto drop-shadow-2xl"
+            />
           </motion.div>
         </div>
       </div>
-      
-      {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-2">
-          <div className="w-1 h-2 bg-white rounded-full"></div>
-        </div>
-      </motion.div>
     </section>
   );
 }
