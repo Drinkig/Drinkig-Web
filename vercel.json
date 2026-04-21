@@ -1,4 +1,14 @@
 {
+    "redirects": [
+        {
+            "source": "/(.*)",
+            "has": [
+                { "type": "host", "value": "drinkig-web.vercel.app" }
+            ],
+            "destination": "https://www.drinkig.com/$1",
+            "permanent": true
+        }
+    ],
     "rewrites": [
         {
             "source": "/(.*)",
