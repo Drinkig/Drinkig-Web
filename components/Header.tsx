@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { cn } from "./ui/utils";
+import { useLanguage } from "../i18n";
 
 const drinkeasyLogo = "/images/drinkeasy-logo.png";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,13 +37,13 @@ export function Header() {
 
           <nav className="hidden md:flex items-center gap-8">
             <a href="#features" className="text-sm text-gray-400 hover:text-white transition-colors">
-              기능
+              {t("nav.features")}
             </a>
             <a href="#how-it-works" className="text-sm text-gray-400 hover:text-white transition-colors">
-              사용 방법
+              {t("nav.howItWorks")}
             </a>
             <a href="#why" className="text-sm text-gray-400 hover:text-white transition-colors">
-              드링키지란
+              {t("nav.why")}
             </a>
           </nav>
 
@@ -51,7 +53,7 @@ export function Header() {
             rel="noopener noreferrer"
             className="text-sm font-medium text-white bg-white/10 hover:bg-white/15 px-5 py-2.5 rounded-full transition-colors"
           >
-            다운로드
+            {t("nav.download")}
           </a>
         </div>
       </div>

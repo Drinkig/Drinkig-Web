@@ -6,21 +6,24 @@ import { Notices } from "./components/Notices";
 import { NoticeDetail } from "./components/NoticeDetail";
 import { Toaster } from "./components/ui/sonner";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { LanguageProvider } from "./i18n";
 
 export default function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <div className="min-h-screen flex flex-col">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/terms" element={<TermsOfService />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/notices" element={<Notices />} />
-          <Route path="/notices/:id" element={<NoticeDetail />} />
-        </Routes>
-        <Toaster />
-      </div>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <ScrollToTop />
+        <div className="min-h-screen flex flex-col">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/notices" element={<Notices />} />
+            <Route path="/notices/:id" element={<NoticeDetail />} />
+          </Routes>
+          <Toaster />
+        </div>
+      </Router>
+    </LanguageProvider>
   );
 }
