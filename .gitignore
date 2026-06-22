@@ -26,3 +26,6 @@ dist-ssr
 
 # Vite
 .vite/
+
+# Prevent accidental self-referential nested clone
+/Drinkig-Web/
