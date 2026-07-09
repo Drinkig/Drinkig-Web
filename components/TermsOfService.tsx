@@ -1,11 +1,13 @@
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
+import { Seo } from "./Seo";
 
 export function TermsOfService() {
     const navigate = useNavigate();
 
     return (
         <div className="min-h-screen bg-black text-white pt-8 pb-20 px-4">
+            <Seo title="이용약관 | 드링키지" description="드링키지 서비스 이용약관" path="/terms" />
             <div className="container mx-auto max-w-2xl">
                 <Button
                     variant="ghost"

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { useLanguage } from "../i18n";
+import { fadeUp } from "../lib/motion";
 
 export function WhyDrinkig() {
   const { t } = useLanguage();
@@ -45,21 +46,15 @@ export function WhyDrinkig() {
   ];
 
   return (
-    <section id="why" className="py-28 bg-[#0a0a0a] relative">
+    <section id="why" className="py-28 bg-surface-base relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] max-w-xl h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
+        <motion.div className="text-center mb-20" {...fadeUp()}>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             {t("why.title")}
           </h2>
-          <p className="text-gray-500 text-lg">
+          <p className="text-gray-400 text-lg">
             {t("why.subtitle")}
           </p>
         </motion.div>
@@ -67,12 +62,9 @@ export function WhyDrinkig() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {points.map((point, index) => (
             <motion.div
-              key={index}
-              className="group p-7 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-              viewport={{ once: true }}
+              key={point.titleKey}
+              className="group p-7 rounded-3xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300"
+              {...fadeUp(index * 0.08)}
             >
               <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 group-hover:text-purple-400 group-hover:border-purple-500/20 transition-colors mb-5">
                 {point.icon}
@@ -80,7 +72,7 @@ export function WhyDrinkig() {
               <h3 className="text-lg font-semibold text-white mb-2.5">
                 {t(point.titleKey)}
               </h3>
-              <p className="text-gray-500 leading-relaxed text-[15px] whitespace-pre-line">
+              <p className="text-gray-400 leading-relaxed text-base whitespace-pre-line">
                 {t(point.descKey)}
               </p>
             </motion.div>

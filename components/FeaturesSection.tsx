@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
-import { useLanguage } from "../i18n";
+import { useLanguage, type TranslationKey } from "../i18n";
 import { MatchScoreIllust, ScanIllust, ChatbotIllust, TastingNoteIllust, CellarIllust } from "./FeatureIllustrations";
 import { type ComponentType } from "react";
+import { fadeUp, slideIn } from "../lib/motion";
 
 const colorMap: Record<string, { bg: string; border: string }> = {
   purple: { bg: "from-purple-500/10 to-transparent", border: "border-purple-500/10" },
@@ -12,9 +13,9 @@ const colorMap: Record<string, { bg: string; border: string }> = {
 };
 
 interface FeatureItem {
-  titleKey: string;
-  subtitleKey: string;
-  descKey: string;
+  titleKey: TranslationKey;
+  subtitleKey: TranslationKey;
+  descKey: TranslationKey;
   color: string;
   Illust: ComponentType<{ className?: string }>;
 }
@@ -31,21 +32,15 @@ export function FeaturesSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="features" className="py-28 bg-[#050505] relative overflow-hidden">
+    <section id="features" className="py-28 bg-surface-sunken relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-900/5 rounded-full blur-[150px]" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
+        <motion.div className="text-center mb-20" {...fadeUp()}>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             {t("features.title")}
           </h2>
-          <p className="text-gray-500 text-lg">
+          <p className="text-gray-400 text-lg">
             {t("features.subtitle")}
           </p>
         </motion.div>
@@ -57,40 +52,25 @@ export function FeaturesSection() {
             const isEven = index % 2 === 0;
             return (
               <motion.div
-                key={index}
-                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 lg:gap-14 p-8 md:p-12 rounded-[2rem] bg-gradient-to-br ${colors.bg} border ${colors.border}`}
-                initial={{ opacity: 0, x: isEven ? -40 : 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                viewport={{ once: true, amount: 0.3 }}
+                key={feature.titleKey}
+                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 lg:gap-14 p-8 md:p-12 rounded-3xl bg-gradient-to-br ${colors.bg} border ${colors.border}`}
+                {...slideIn(isEven)}
               >
                 {/* 텍스트 */}
-                <motion.div
-                  className="flex-1 text-center lg:text-left"
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                >
+                <motion.div className="flex-1 text-center lg:text-left" {...fadeUp(0.2)}>
                   <p className="text-sm text-purple-400 font-medium mb-2 tracking-wide">
-                    {t(feature.subtitleKey as any)}
+                    {t(feature.subtitleKey)}
                   </p>
                   <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                    {t(feature.titleKey as any)}
+                    {t(feature.titleKey)}
                   </h3>
-                  <p className="text-gray-400 leading-relaxed max-w-md mx-auto lg:mx-0 text-[15px] whitespace-pre-line">
-                    {t(feature.descKey as any)}
+                  <p className="text-gray-400 leading-relaxed max-w-md mx-auto lg:mx-0 text-base whitespace-pre-line">
+                    {t(feature.descKey)}
                   </p>
                 </motion.div>
 
                 {/* 일러스트 */}
-                <motion.div
-                  className="flex-shrink-0"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                >
+                <motion.div className="flex-shrink-0" {...fadeUp(0.3)}>
                   <Illust className="w-[200px] h-[200px] md:w-[240px] md:h-[240px]" />
                 </motion.div>
               </motion.div>

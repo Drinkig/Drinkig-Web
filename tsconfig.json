@@ -5,17 +5,14 @@
     "jsx": "react-jsx",
     "moduleResolution": "Bundler",
     "strict": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    },
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }
-
-

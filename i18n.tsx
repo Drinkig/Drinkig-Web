@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 export type Lang = "ko" | "en";
 
@@ -73,6 +73,16 @@ const translations = {
     "terms": "이용약관",
     "privacy": "개인정보 처리방침",
     "notices": "공지사항",
+    "footer.businessInfo": "상호: 고메블 (Gourmevel) · 대표: 위승주 · 사업자등록번호: 342-15-02376",
+    "footer.contact": "문의",
+
+    // Notices
+    "notices.back": "← 돌아가기",
+    "notices.title": "공지사항",
+    "notices.empty": "등록된 공지사항이 없습니다.",
+    "notices.notFound": "공지사항을 찾을 수 없습니다.",
+    "notices.backToList": "목록으로 돌아가기",
+    "notices.backShort": "← 목록으로",
   },
   en: {
     // Header
@@ -144,10 +154,20 @@ const translations = {
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
     "notices": "Notices",
+    "footer.businessInfo": "Gourmevel · CEO: Seungju Wi · Business Reg. No: 342-15-02376",
+    "footer.contact": "Contact",
+
+    // Notices
+    "notices.back": "← Back",
+    "notices.title": "Notices",
+    "notices.empty": "No notices yet.",
+    "notices.notFound": "Notice not found.",
+    "notices.backToList": "Back to list",
+    "notices.backShort": "← Back to list",
   },
 } as const;
 
-type TranslationKey = keyof typeof translations.ko;
+export type TranslationKey = keyof typeof translations.ko;
 
 interface LanguageContextType {
   lang: Lang;
@@ -168,6 +188,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLang(newLang);
     localStorage.setItem("drinkig-lang", newLang);
   };
+
+  // 스크린리더 발음·검색엔진 언어 판별을 위해 <html lang>을 현재 언어와 동기화
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   const t = (key: TranslationKey): string => {
     return translations[lang][key] || translations.ko[key] || key;

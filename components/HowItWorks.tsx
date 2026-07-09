@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { useLanguage } from "../i18n";
+import { fadeUp } from "../lib/motion";
 
 export function HowItWorks() {
   const { t } = useLanguage();
@@ -38,21 +39,15 @@ export function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="py-28 bg-[#0a0a0a] relative">
+    <section id="how-it-works" className="py-28 bg-surface-base relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] max-w-xl h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
+        <motion.div className="text-center mb-20" {...fadeUp()}>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             {t("how.title")}
           </h2>
-          <p className="text-gray-500 text-lg">
+          <p className="text-gray-400 text-lg">
             {t("how.subtitle")}
           </p>
         </motion.div>
@@ -60,23 +55,20 @@ export function HowItWorks() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {steps.map((step, index) => (
             <motion.div
-              key={index}
+              key={step.number}
               className="relative p-8 rounded-3xl bg-gradient-to-b from-white/[0.04] to-transparent border border-white/[0.06] hover:border-white/10 transition-colors"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              {...fadeUp(index * 0.1)}
             >
               <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-6">
                 {step.icon}
               </div>
-              <span className="text-xs font-mono text-gray-600 mb-3 block">
+              <span className="text-xs font-mono text-gray-500 mb-3 block">
                 STEP {step.number}
               </span>
               <h3 className="text-xl font-semibold text-white mb-3">
                 {step.title}
               </h3>
-              <p className="text-gray-500 leading-relaxed text-[15px]">
+              <p className="text-gray-400 leading-relaxed text-base">
                 {step.description}
               </p>
               {index < steps.length - 1 && (

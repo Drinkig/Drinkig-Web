@@ -1,22 +1,26 @@
 import { Button } from "./ui/button";
 import { useNavigate, Link } from "react-router-dom";
 import { notices } from "../data/notices";
+import { useLanguage } from "../i18n";
+import { Seo } from "./Seo";
 
 export function Notices() {
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     return (
         <div className="min-h-screen bg-black text-white pt-8 pb-20 px-4">
+            <Seo title="공지사항 | 드링키지" description="드링키지의 새로운 소식과 공지사항을 확인하세요." path="/notices" />
             <div className="container mx-auto max-w-2xl">
                 <Button
                     variant="ghost"
                     onClick={() => navigate("/")}
                     className="mb-6 pl-0 hover:bg-transparent hover:text-gray-300 transition-colors"
                 >
-                    ← 돌아가기
+                    {t("notices.back")}
                 </Button>
 
-                <h1 className="text-2xl font-bold mb-8">공지사항</h1>
+                <h1 className="text-2xl font-bold mb-8">{t("notices.title")}</h1>
 
                 <div className="border-t border-white/10">
                     {notices.length > 0 ? (
@@ -36,7 +40,7 @@ export function Notices() {
                         </div>
                     ) : (
                         <div className="text-center py-20 text-gray-500">
-                            등록된 공지사항이 없습니다.
+                            {t("notices.empty")}
                         </div>
                     )}
                 </div>
