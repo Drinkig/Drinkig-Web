@@ -1,6 +1,8 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, ReactNode } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { pathnameToLang, localizePath, type Lang } from "./lib/seo-meta";
 
-export type Lang = "ko" | "en";
+export type { Lang };
 
 const translations = {
   ko: {
@@ -73,7 +75,7 @@ const translations = {
     "terms": "이용약관",
     "privacy": "개인정보 처리방침",
     "notices": "공지사항",
-    "footer.businessInfo": "상호: 고메블 (Gourmevel) · 대표: 위승주 · 사업자등록번호: 342-15-02376",
+    "footer.businessInfo": "상호: 고메블 (Gourmevel) · 대표: 위승주 · 사업자등록번호: 342-15-02376 · 통신판매업신고: 2026-서울서대문-0410",
     "footer.contact": "문의",
 
     // Notices
@@ -154,7 +156,7 @@ const translations = {
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
     "notices": "Notices",
-    "footer.businessInfo": "Gourmevel · CEO: Seungju Wi · Business Reg. No: 342-15-02376",
+    "footer.businessInfo": "Gourmevel · CEO: Seungju Wi · Business Reg. No: 342-15-02376 · E-commerce Permit: 2026-서울서대문-0410",
     "footer.contact": "Contact",
 
     // Notices
@@ -173,20 +175,21 @@ interface LanguageContextType {
   lang: Lang;
   setLang: (lang: Lang) => void;
   t: (key: TranslationKey) => string;
+  /** 현재 언어를 유지한 내부 링크 경로. 예: en에서 lp("/notices") → "/en/notices" */
+  lp: (path: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
+// 언어는 URL이 소스다: /en 접두어가 있으면 en, 없으면 ko.
+// 검색엔진이 언어별 URL을 각각 인덱싱할 수 있게 하기 위함.
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(() => {
-    const saved = localStorage.getItem("drinkig-lang");
-    if (saved === "en" || saved === "ko") return saved;
-    return navigator.language.startsWith("en") ? "en" : "ko";
-  });
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const lang = pathnameToLang(pathname);
 
   const changeLang = (newLang: Lang) => {
-    setLang(newLang);
-    localStorage.setItem("drinkig-lang", newLang);
+    if (newLang !== lang) navigate(localizePath(pathname, newLang));
   };
 
   // 스크린리더 발음·검색엔진 언어 판별을 위해 <html lang>을 현재 언어와 동기화
@@ -198,8 +201,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     return translations[lang][key] || translations.ko[key] || key;
   };
 
+  const lp = (path: string) => localizePath(path, lang);
+
   return (
-    <LanguageContext.Provider value={{ lang, setLang: changeLang, t }}>
+    <LanguageContext.Provider value={{ lang, setLang: changeLang, t, lp }}>
       {children}
     </LanguageContext.Provider>
   );

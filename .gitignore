@@ -29,3 +29,6 @@ dist-ssr
 
 # Prevent accidental self-referential nested clone
 /Drinkig-Web/
+
+# SSR build output
+dist-server

@@ -5,7 +5,7 @@ import { APP_STORE_URL, INSTAGRAM_URL, LOGO_SRC, CONTACT_EMAIL } from "../lib/co
 import { AppleLogo } from "./icons";
 
 export function Footer() {
-  const { lang, setLang, t } = useLanguage();
+  const { lang, setLang, t, lp } = useLanguage();
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
 
@@ -79,13 +79,13 @@ export function Footer() {
 
             {/* 약관 링크들 */}
             <div className="flex items-center gap-5 text-sm">
-              <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">
+              <Link to={lp("/privacy")} className="text-gray-400 hover:text-white transition-colors">
                 {t("privacy")}
               </Link>
-              <Link to="/terms" className="text-gray-400 hover:text-white transition-colors">
+              <Link to={lp("/terms")} className="text-gray-400 hover:text-white transition-colors">
                 {t("terms")}
               </Link>
-              <Link to="/notices" className="text-gray-400 hover:text-white transition-colors">
+              <Link to={lp("/notices")} className="text-gray-400 hover:text-white transition-colors">
                 {t("notices")}
               </Link>
             </div>

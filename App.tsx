@@ -1,8 +1,9 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { lazy, Suspense, type ReactElement } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MotionConfig } from "motion/react";
 import { Home } from "./components/Home";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { Seo } from "./components/Seo";
 import { LanguageProvider } from "./i18n";
 
 const TermsOfService = lazy(() =>
@@ -18,25 +19,47 @@ const NoticeDetail = lazy(() =>
   import("./components/NoticeDetail").then((m) => ({ default: m.NoticeDetail })),
 );
 
-export default function App() {
+const routes: Array<{ path: string; element: ReactElement }> = [
+  { path: "/", element: <Home /> },
+  { path: "/terms", element: <TermsOfService /> },
+  { path: "/privacy", element: <PrivacyPolicy /> },
+  { path: "/notices", element: <Notices /> },
+  { path: "/notices/:id", element: <NoticeDetail /> },
+];
+
+// 라우터(BrowserRouter/StaticRouter) 안쪽 전체. SSR 엔트리에서도 재사용한다.
+export function AppShell() {
   return (
     <LanguageProvider>
       <MotionConfig reducedMotion="user">
-        <Router>
-          <ScrollToTop />
-          <div className="min-h-screen flex flex-col">
-            <Suspense fallback={null}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/terms" element={<TermsOfService />} />
-                <Route path="/privacy" element={<PrivacyPolicy />} />
-                <Route path="/notices" element={<Notices />} />
-                <Route path="/notices/:id" element={<NoticeDetail />} />
-              </Routes>
-            </Suspense>
-          </div>
-        </Router>
+        <ScrollToTop />
+        <Seo />
+        <div className="min-h-screen flex flex-col">
+          <Suspense fallback={null}>
+            <Routes>
+              {routes.map((r) => (
+                <Route key={r.path} path={r.path} element={r.element} />
+              ))}
+              {/* 영어 버전: /en 접두어 경로 */}
+              {routes.map((r) => (
+                <Route
+                  key={`/en${r.path}`}
+                  path={r.path === "/" ? "/en" : `/en${r.path}`}
+                  element={r.element}
+                />
+              ))}
+            </Routes>
+          </Suspense>
+        </div>
       </MotionConfig>
     </LanguageProvider>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppShell />
+    </BrowserRouter>
   );
 }

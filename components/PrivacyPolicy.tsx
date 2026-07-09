@@ -1,17 +1,17 @@
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
-import { Seo } from "./Seo";
+import { useLanguage } from "../i18n";
 
 export function PrivacyPolicy() {
     const navigate = useNavigate();
+    const { lp } = useLanguage();
 
     return (
         <div className="min-h-screen bg-black text-white pt-8 pb-20 px-4">
-            <Seo title="개인정보 처리방침 | 드링키지" description="드링키지 개인정보 처리방침" path="/privacy" />
             <div className="container mx-auto max-w-2xl">
                 <Button
                     variant="ghost"
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate(lp("/"))}
                     className="mb-6 pl-0 hover:bg-transparent hover:text-gray-300 transition-colors"
                 >
                     ← 돌아가기

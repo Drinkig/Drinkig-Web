@@ -13,7 +13,7 @@ const NAV_LINKS = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, lp } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +43,7 @@ export function Header() {
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="relative flex items-center justify-between">
-          <a href="/" aria-label="드링키지 홈" className="flex items-center">
+          <a href={lp("/")} aria-label="드링키지 홈" className="flex items-center">
             <img
               src={LOGO_SRC}
               alt="드링키지"

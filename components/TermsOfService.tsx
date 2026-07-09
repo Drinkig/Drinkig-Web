@@ -1,17 +1,17 @@
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
-import { Seo } from "./Seo";
+import { useLanguage } from "../i18n";
 
 export function TermsOfService() {
     const navigate = useNavigate();
+    const { lp } = useLanguage();
 
     return (
         <div className="min-h-screen bg-black text-white pt-8 pb-20 px-4">
-            <Seo title="이용약관 | 드링키지" description="드링키지 서비스 이용약관" path="/terms" />
             <div className="container mx-auto max-w-2xl">
                 <Button
                     variant="ghost"
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate(lp("/"))}
                     className="mb-6 pl-0 hover:bg-transparent hover:text-gray-300 transition-colors"
                 >
                     ← 돌아가기
@@ -125,6 +125,7 @@ export function TermsOfService() {
                             <li>상호: 고메블 (Gourmevel)</li>
                             <li>대표자: 위승주</li>
                             <li>사업자등록번호: 342-15-02376</li>
+                            <li>통신판매업신고번호: 2026-서울서대문-0410</li>
                             <li>주소: 서울특별시 서대문구 가재울미래로 2, 114동 2102호(남가좌동, DMC파크뷰자이)</li>
                             <li>이메일: gourmevel@gmail.com</li>
                         </ul>

@@ -2,20 +2,19 @@ import { Button } from "./ui/button";
 import { useNavigate, useParams } from "react-router-dom";
 import { getNotice } from "../data/notices";
 import { useLanguage } from "../i18n";
-import { Seo } from "./Seo";
 
 export function NoticeDetail() {
     const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
     const noticeId = Number(id);
     const notice = getNotice(noticeId);
-    const { t } = useLanguage();
+    const { t, lp } = useLanguage();
 
     if (!notice) {
         return (
             <div className="min-h-screen bg-black text-white pt-20 px-4 text-center">
                 <p className="text-gray-400 mb-4">{t("notices.notFound")}</p>
-                <Button variant="outline" onClick={() => navigate("/notices")}>
+                <Button variant="outline" onClick={() => navigate(lp("/notices"))}>
                     {t("notices.backToList")}
                 </Button>
             </div>
@@ -33,11 +32,10 @@ export function NoticeDetail() {
 
     return (
         <div className="min-h-screen bg-black text-white pt-8 pb-20 px-4">
-            <Seo title={`${notice.title} | 드링키지`} path={`/notices/${notice.id}`} />
             <div className="container mx-auto max-w-2xl">
                 <Button
                     variant="ghost"
-                    onClick={() => navigate("/notices")}
+                    onClick={() => navigate(lp("/notices"))}
                     className="mb-6 pl-0 hover:bg-transparent hover:text-gray-300 transition-colors"
                 >
                     {t("notices.backShort")}
@@ -55,7 +53,7 @@ export function NoticeDetail() {
                 <div className="border-t border-white/10 pt-8 mt-8 text-center">
                     <Button
                         variant="ghost"
-                        onClick={() => navigate("/notices")}
+                        onClick={() => navigate(lp("/notices"))}
                         className="text-gray-400 hover:text-white"
                     >
                         {t("notices.backToList")}
