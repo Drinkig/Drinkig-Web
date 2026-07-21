@@ -19,6 +19,26 @@ const NoticeDetail = lazy(() =>
   import("./components/NoticeDetail").then((m) => ({ default: m.NoticeDetail })),
 );
 
+// 어드민 — 클라이언트 전용(프리렌더 제외, /en 미러 없음)
+const AdminLogin = lazy(() =>
+  import("./components/admin/AdminLogin").then((m) => ({ default: m.AdminLogin })),
+);
+const AdminLayout = lazy(() =>
+  import("./components/admin/AdminLayout").then((m) => ({ default: m.AdminLayout })),
+);
+const AdminDashboard = lazy(() =>
+  import("./components/admin/AdminDashboard").then((m) => ({ default: m.AdminDashboard })),
+);
+const AdminWineRequests = lazy(() =>
+  import("./components/admin/AdminWineRequests").then((m) => ({ default: m.AdminWineRequests })),
+);
+const AdminReports = lazy(() =>
+  import("./components/admin/AdminReports").then((m) => ({ default: m.AdminReports })),
+);
+const AdminScanFeedback = lazy(() =>
+  import("./components/admin/AdminScanFeedback").then((m) => ({ default: m.AdminScanFeedback })),
+);
+
 const routes: Array<{ path: string; element: ReactElement }> = [
   { path: "/", element: <Home /> },
   { path: "/terms", element: <TermsOfService /> },
@@ -48,6 +68,14 @@ export function AppShell() {
                   element={r.element}
                 />
               ))}
+              {/* 어드민 (클라이언트 전용) */}
+              <Route path="/admin" element={<AdminLogin />} />
+              <Route element={<AdminLayout />}>
+                <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                <Route path="/admin/requests" element={<AdminWineRequests />} />
+                <Route path="/admin/reports" element={<AdminReports />} />
+                <Route path="/admin/feedback" element={<AdminScanFeedback />} />
+              </Route>
             </Routes>
           </Suspense>
         </div>
