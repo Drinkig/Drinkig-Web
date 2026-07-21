@@ -48,7 +48,15 @@ export function Footer() {
                 {CONTACT_EMAIL}
               </a>
             </p>
-            <p className="text-gray-500 text-sm">Copyright &copy; 2026 Drinkig.</p>
+            <p className="text-gray-500 text-sm">
+              Copyright &copy; 2026 Drinkig.{" "}
+              <Link
+                to="/admin"
+                className="text-gray-600 hover:text-gray-400 transition-colors"
+              >
+                관리자
+              </Link>
+            </p>
           </div>
 
           {/* 오른쪽 */}
