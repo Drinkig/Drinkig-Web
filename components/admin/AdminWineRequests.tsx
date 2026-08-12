@@ -137,24 +137,24 @@ export function AdminWineRequests() {
               <button
                 type="button"
                 onClick={() => openDetail(row.requestId)}
-                className="w-full rounded-xl border border-white/10 bg-surface-raised px-4 py-3 text-left hover:border-white/25 transition-colors"
+                className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-left hover:border-purple-300 transition-colors"
               >
                 <div className="flex items-center gap-3">
                   {row.imageUrl ? (
                     <img
                       src={row.imageUrl}
                       alt=""
-                      className="size-12 rounded-lg object-cover bg-black/40 shrink-0"
+                      className="size-12 rounded-lg object-cover bg-zinc-100 shrink-0"
                     />
                   ) : (
-                    <div className="size-12 rounded-lg bg-black/40 shrink-0" />
+                    <div className="size-12 rounded-lg bg-zinc-100 shrink-0" />
                   )}
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <p className="truncate text-sm font-medium text-white">{row.name}</p>
+                      <p className="truncate text-sm font-medium text-zinc-900">{row.name}</p>
                       <Badge tone={STATUS_TONE[row.status]}>{STATUS_LABEL[row.status]}</Badge>
                     </div>
-                    <p className="mt-0.5 truncate text-xs text-zinc-400">
+                    <p className="mt-0.5 truncate text-xs text-zinc-500">
                       {[row.sort, row.country, row.variety].filter(Boolean).join(" · ") || "정보 없음"}
                     </p>
                     <p className="mt-0.5 text-xs text-zinc-500">{formatDateTime(row.createdAt)}</p>
@@ -170,11 +170,11 @@ export function AdminWineRequests() {
 
       {(selected || detailLoading) && (
         <div
-          className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/70 p-0 md:p-4"
+          className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/40 p-0 md:p-4"
           onClick={() => !acting && setSelected(null)}
         >
           <div
-            className="w-full md:max-w-lg max-h-[90vh] overflow-y-auto rounded-t-2xl md:rounded-2xl border border-white/10 bg-surface-overlay p-5"
+            className="w-full md:max-w-lg max-h-[90vh] overflow-y-auto rounded-t-2xl md:rounded-2xl border border-zinc-200 bg-white p-5"
             onClick={(e) => e.stopPropagation()}
           >
             {detailLoading || !selected ? (
@@ -186,15 +186,15 @@ export function AdminWineRequests() {
                     <img
                       src={selected.imageUrl}
                       alt=""
-                      className="w-20 rounded-lg object-cover bg-black/40"
+                      className="w-20 rounded-lg object-cover bg-zinc-100"
                     />
                   )}
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <h3 className="text-base font-bold text-white">{selected.name}</h3>
+                      <h3 className="text-base font-bold text-zinc-900">{selected.name}</h3>
                       <Badge tone={STATUS_TONE[selected.status]}>{STATUS_LABEL[selected.status]}</Badge>
                     </div>
-                    {selected.nameEng && <p className="mt-0.5 text-xs text-zinc-400">{selected.nameEng}</p>}
+                    {selected.nameEng && <p className="mt-0.5 text-xs text-zinc-500">{selected.nameEng}</p>}
                   </div>
                 </div>
 
@@ -211,20 +211,20 @@ export function AdminWineRequests() {
                   ].map(([label, value]) => (
                     <div key={label as string}>
                       <dt className="text-xs text-zinc-500">{label}</dt>
-                      <dd className="text-zinc-200 break-all">{value || "-"}</dd>
+                      <dd className="text-zinc-800 break-all">{value || "-"}</dd>
                     </div>
                   ))}
                 </dl>
 
                 {selected.memo && (
-                  <div className="mt-3 rounded-lg bg-black/30 p-3 text-sm text-zinc-300">
+                  <div className="mt-3 rounded-lg bg-zinc-100 p-3 text-sm text-zinc-700">
                     <p className="text-xs text-zinc-500 mb-1">메모</p>
                     {selected.memo}
                   </div>
                 )}
                 {selected.rejectReason && (
-                  <div className="mt-3 rounded-lg bg-red-500/10 p-3 text-sm text-red-300">
-                    <p className="text-xs text-red-400/80 mb-1">반려 사유</p>
+                  <div className="mt-3 rounded-lg bg-red-50 p-3 text-sm text-red-700">
+                    <p className="text-xs text-red-500 mb-1">반려 사유</p>
                     {selected.rejectReason}
                   </div>
                 )}
@@ -252,7 +252,7 @@ export function AdminWineRequests() {
                       onChange={(e) => setRejectReason(e.target.value)}
                       placeholder="반려 사유를 입력하세요 (요청자에게 표시됩니다)"
                       rows={3}
-                      className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:outline-none"
+                      className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-purple-500 focus:outline-none"
                     />
                     <div className="flex gap-2">
                       <Button variant="outline" className="flex-1" disabled={acting} onClick={() => setRejecting(false)}>

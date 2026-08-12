@@ -130,7 +130,7 @@ export function AdminReports() {
           {rows.map((row) => (
             <li
               key={row.reportId}
-              className="rounded-xl border border-white/10 bg-surface-raised px-4 py-3"
+              className="rounded-xl border border-zinc-200 bg-white px-4 py-3"
             >
               <div className="flex items-center gap-2">
                 <Badge tone="neutral">{TYPE_LABEL[row.type]}</Badge>
@@ -139,12 +139,12 @@ export function AdminReports() {
               </div>
 
               {row.targetSummary && (
-                <p className="mt-2 rounded-lg bg-black/30 p-2.5 text-sm text-zinc-300 whitespace-pre-wrap break-all">
+                <p className="mt-2 rounded-lg bg-zinc-100 p-2.5 text-sm text-zinc-700 whitespace-pre-wrap break-all">
                   {row.targetSummary}
                 </p>
               )}
               {row.reason && (
-                <p className="mt-2 text-sm text-zinc-300">
+                <p className="mt-2 text-sm text-zinc-700">
                   <span className="text-xs text-zinc-500 mr-1.5">사유</span>
                   {row.reason}
                 </p>
@@ -170,7 +170,7 @@ export function AdminReports() {
                       value={note}
                       onChange={(e) => setNote(e.target.value)}
                       placeholder="처리 메모 (선택)"
-                      className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:outline-none"
+                      className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-purple-500 focus:outline-none"
                     />
                     <div className="flex gap-2">
                       <Button

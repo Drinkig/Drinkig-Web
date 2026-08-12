@@ -11,7 +11,7 @@ import {
   type StatsOverview,
   type Timeseries,
 } from "../../lib/adminApi";
-import { BarChart, ChartCard, FunnelChart, LineChart, SERIES, StatTile } from "./charts";
+import { BarChart, ChartCard, FunnelChart, LineChart, StatTile } from "./charts";
 import { ErrorState, FilterChips, LoadingState, PageHeader } from "./shared";
 
 type RangeDays = 7 | 30 | 90;
@@ -104,7 +104,7 @@ export function AdminDashboard() {
       </div>
 
       <div className="mt-6 flex items-center justify-between gap-2">
-        <h3 className="text-sm font-medium text-zinc-300">일별 추이</h3>
+        <h3 className="text-sm font-medium text-zinc-700">일별 추이</h3>
         <FilterChips
           options={[
             { value: "7", label: "7일" },
@@ -118,19 +118,16 @@ export function AdminDashboard() {
 
       <div className="mt-3 grid md:grid-cols-2 gap-3">
         <ChartCard title="신규 가입">
-          <LineChart data={days.map((d) => ({ date: d.date, value: d.signups }))} color={SERIES.blue} />
+          <LineChart data={days.map((d) => ({ date: d.date, value: d.signups }))} />
         </ChartCard>
         <ChartCard title="스캔 수">
-          <LineChart data={days.map((d) => ({ date: d.date, value: d.scans }))} color={SERIES.aqua} />
+          <LineChart data={days.map((d) => ({ date: d.date, value: d.scans }))} />
         </ChartCard>
         <ChartCard title="노트 작성">
-          <LineChart data={days.map((d) => ({ date: d.date, value: d.tastingNotes }))} color={SERIES.violet} />
+          <LineChart data={days.map((d) => ({ date: d.date, value: d.tastingNotes }))} />
         </ChartCard>
         <ChartCard title="유료 전환">
-          <LineChart
-            data={days.map((d) => ({ date: d.date, value: d.paidSubscriptions }))}
-            color={SERIES.yellow}
-          />
+          <LineChart data={days.map((d) => ({ date: d.date, value: d.paidSubscriptions }))} />
         </ChartCard>
       </div>
 
@@ -146,7 +143,7 @@ export function AdminDashboard() {
           }
         >
           {downloads?.configured ? (
-            <BarChart data={downloads.days.map((d) => ({ date: d.date, value: d.units }))} color={SERIES.blue} />
+            <BarChart data={downloads.days.map((d) => ({ date: d.date, value: d.units }))} />
           ) : (
             <div className="py-8 text-center text-sm text-zinc-500 space-y-1">
               <p>App Store Connect API 키가 아직 설정되지 않았습니다.</p>

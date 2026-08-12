@@ -1,20 +1,14 @@
 import { useMemo, useRef, useState, type ReactNode } from "react";
 
-// 어드민 차트 공용 모듈 — 다크 서피스(#111111) 기준으로 검증된 색상만 사용한다.
-// 시리즈 색: blue #3987e5 / aqua #199e70 / yellow #c98500 / violet #9085e9 / red #e66767
-// 크롬(잉크) 색: 그리드 #2c2c2a, 베이스라인 #383835, 축 라벨 #898781, 보조 텍스트 #c3c2b7
+// 어드민 차트 공용 모듈 — 라이트 서피스(흰 카드) 기준.
+// 시리즈는 드링키지 키컬러(보라) 하나만 쓴다 — 카드 제목이 시리즈명을 대신하므로 색 구분이 필요 없다.
+// 크롬(잉크) 색: 그리드 zinc-200, 베이스라인 zinc-300, 축 라벨 zinc-500
 
-export const SERIES = {
-  blue: "#3987e5",
-  aqua: "#199e70",
-  yellow: "#c98500",
-  violet: "#9085e9",
-  red: "#e66767",
-} as const;
+export const KEY_COLOR = "#9333ea"; // purple-600
 
-const GRID = "#2c2c2a";
-const BASELINE = "#383835";
-const MUTED = "#898781";
+const GRID = "#e4e4e7";
+const BASELINE = "#d4d4d8";
+const MUTED = "#71717a";
 
 export function StatTile({
   label,
@@ -26,9 +20,9 @@ export function StatTile({
   sub?: ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-surface-raised px-4 py-3.5">
-      <p className="text-xs text-zinc-400">{label}</p>
-      <p className="mt-1 text-2xl font-bold text-white">{value}</p>
+    <div className="rounded-xl border border-zinc-200 bg-white px-4 py-3.5">
+      <p className="text-xs text-zinc-500">{label}</p>
+      <p className="mt-1 text-2xl font-bold text-zinc-900">{value}</p>
       {sub && <p className="mt-0.5 text-xs text-zinc-500">{sub}</p>}
     </div>
   );
@@ -44,9 +38,9 @@ export function ChartCard({
   action?: ReactNode;
 }) {
   return (
-    <section className="rounded-xl border border-white/10 bg-surface-raised p-4">
+    <section className="rounded-xl border border-zinc-200 bg-white p-4">
       <div className="flex items-center justify-between gap-2 mb-3">
-        <h3 className="text-sm font-medium text-zinc-200">{title}</h3>
+        <h3 className="text-sm font-medium text-zinc-700">{title}</h3>
         {action}
       </div>
       {children}
@@ -84,11 +78,11 @@ const PAD_B = 22;
 // 호버 시 크로스헤어 + 툴팁, 마커는 호버 시에만 노출.
 export function LineChart({
   data,
-  color,
+  color = KEY_COLOR,
   formatValue = (v: number) => v.toLocaleString(),
 }: {
   data: Point[];
-  color: string;
+  color?: string;
   formatValue?: (v: number) => string;
 }) {
   const [hover, setHover] = useState<number | null>(null);
@@ -176,20 +170,20 @@ export function LineChart({
               strokeWidth={1}
               strokeDasharray="3 3"
             />
-            <circle cx={points[hover].x} cy={points[hover].y} r={4} fill={color} stroke="#111111" strokeWidth={2} />
+            <circle cx={points[hover].x} cy={points[hover].y} r={4} fill={color} stroke="#ffffff" strokeWidth={2} />
           </>
         )}
       </svg>
       {hover !== null && (
         <div
-          className="pointer-events-none absolute -top-1 rounded-md border border-white/10 bg-black/90 px-2.5 py-1.5 text-xs whitespace-nowrap"
+          className="pointer-events-none absolute -top-1 rounded-md border border-zinc-200 bg-white shadow-md px-2.5 py-1.5 text-xs whitespace-nowrap"
           style={{
             left: `${(points[hover].x / W) * 100}%`,
             transform: points[hover].x > W * 0.7 ? "translateX(-105%)" : "translateX(8px)",
           }}
         >
-          <span className="text-zinc-400">{data[hover].date}</span>{" "}
-          <span className="font-medium text-white">{formatValue(data[hover].value)}</span>
+          <span className="text-zinc-500">{data[hover].date}</span>{" "}
+          <span className="font-medium text-zinc-900">{formatValue(data[hover].value)}</span>
         </div>
       )}
     </div>
@@ -199,11 +193,11 @@ export function LineChart({
 // 수직 바 차트 (다운로드 추이용) — 4px 라운드 상단, 바 간 2px 갭, 호버 툴팁
 export function BarChart({
   data,
-  color,
+  color = KEY_COLOR,
   formatValue = (v: number) => v.toLocaleString(),
 }: {
   data: Point[];
-  color: string;
+  color?: string;
   formatValue?: (v: number) => string;
 }) {
   const [hover, setHover] = useState<number | null>(null);
@@ -267,23 +261,22 @@ export function BarChart({
       </svg>
       {hover !== null && (
         <div
-          className="pointer-events-none absolute -top-1 rounded-md border border-white/10 bg-black/90 px-2.5 py-1.5 text-xs whitespace-nowrap"
+          className="pointer-events-none absolute -top-1 rounded-md border border-zinc-200 bg-white shadow-md px-2.5 py-1.5 text-xs whitespace-nowrap"
           style={{
             left: `${((PAD_L + hover * slot + slot / 2) / W) * 100}%`,
             transform: hover > data.length * 0.7 ? "translateX(-105%)" : "translateX(8px)",
           }}
         >
-          <span className="text-zinc-400">{data[hover].date}</span>{" "}
-          <span className="font-medium text-white">{formatValue(data[hover].value)}</span>
+          <span className="text-zinc-500">{data[hover].date}</span>{" "}
+          <span className="font-medium text-zinc-900">{formatValue(data[hover].value)}</span>
         </div>
       )}
     </div>
   );
 }
 
-// 퍼널 — 수평 바, 블루 순서형 램프(다크 서피스 2:1 이상 단계만 사용),
-// 값·전환율은 잉크 토큰으로 직접 라벨링
-const FUNNEL_RAMP = ["#3987e5", "#2a78d6", "#256abf", "#1c5cab", "#184f95"];
+// 퍼널 — 수평 바, 키컬러(보라) 순서형 램프, 값·전환율은 잉크 토큰으로 직접 라벨링
+const FUNNEL_RAMP = ["#a855f7", "#9333ea", "#7e22ce", "#6b21a8", "#581c87"];
 
 export function FunnelChart({ stages }: { stages: { label: string; value: number }[] }) {
   const max = Math.max(1, ...stages.map((s) => s.value));
@@ -296,13 +289,13 @@ export function FunnelChart({ stages }: { stages: { label: string; value: number
         return (
           <li key={stage.label}>
             <div className="flex items-baseline justify-between text-xs mb-1">
-              <span className="text-zinc-300">{stage.label}</span>
-              <span className="text-zinc-400">
-                <span className="font-medium text-white">{stage.value.toLocaleString()}</span>
+              <span className="text-zinc-700">{stage.label}</span>
+              <span className="text-zinc-500">
+                <span className="font-medium text-zinc-900">{stage.value.toLocaleString()}</span>
                 {rate !== null && <span className="ml-1.5">({rate}%)</span>}
               </span>
             </div>
-            <div className="h-4 rounded-r bg-black/30">
+            <div className="h-4 rounded-r bg-zinc-100">
               <div
                 className="h-full rounded-r"
                 style={{

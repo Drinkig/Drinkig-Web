@@ -5,8 +5,8 @@ import { cn } from "../ui/utils";
 export function PageHeader({ title, description }: { title: string; description?: string }) {
   return (
     <header className="mb-6">
-      <h2 className="text-xl font-bold text-white">{title}</h2>
-      {description && <p className="mt-1 text-sm text-zinc-400">{description}</p>}
+      <h2 className="text-xl font-bold text-zinc-900">{title}</h2>
+      {description && <p className="mt-1 text-sm text-zinc-500">{description}</p>}
     </header>
   );
 }
@@ -22,10 +22,10 @@ export function Badge({
     <span
       className={cn(
         "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap",
-        tone === "pending" && "bg-yellow-500/15 text-yellow-300",
-        tone === "good" && "bg-emerald-500/15 text-emerald-300",
-        tone === "bad" && "bg-red-500/15 text-red-300",
-        tone === "neutral" && "bg-white/10 text-zinc-300",
+        tone === "pending" && "bg-amber-100 text-amber-700",
+        tone === "good" && "bg-emerald-100 text-emerald-700",
+        tone === "bad" && "bg-red-100 text-red-700",
+        tone === "neutral" && "bg-zinc-100 text-zinc-600",
       )}
     >
       {children}
@@ -40,7 +40,7 @@ export function LoadingState() {
 export function ErrorState({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
     <div className="py-16 text-center">
-      <p className="text-sm text-red-400">{message}</p>
+      <p className="text-sm text-red-600">{message}</p>
       {onRetry && (
         <Button variant="outline" size="sm" className="mt-3" onClick={onRetry}>
           다시 시도
@@ -69,7 +69,7 @@ export function Pagination({
       <Button variant="outline" size="sm" disabled={page <= 0} onClick={() => onChange(page - 1)}>
         이전
       </Button>
-      <span className="text-xs text-zinc-400">
+      <span className="text-xs text-zinc-500">
         {page + 1} / {totalPages}
       </span>
       <Button
@@ -103,8 +103,8 @@ export function FilterChips<T extends string>({
           className={cn(
             "rounded-full border px-3 py-1 text-xs transition-colors",
             value === opt.value
-              ? "border-purple-500/60 bg-purple-500/15 text-purple-300"
-              : "border-white/10 text-zinc-400 hover:bg-white/5 hover:text-white",
+              ? "border-purple-300 bg-purple-50 text-purple-700"
+              : "border-zinc-200 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900",
           )}
         >
           {opt.label}

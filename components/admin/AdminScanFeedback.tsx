@@ -90,19 +90,19 @@ export function AdminScanFeedback() {
       ) : (
         <ul className="space-y-2">
           {rows.map((row) => (
-            <li key={row.id} className="rounded-xl border border-white/10 bg-surface-raised px-4 py-3">
+            <li key={row.id} className="rounded-xl border border-zinc-200 bg-white px-4 py-3">
               <div className="flex items-center gap-2">
                 <Badge tone={RATING_TONE[row.rating]}>{RATING_LABEL[row.rating]}</Badge>
                 <Badge tone="neutral">{row.scanType === "label" ? "라벨" : "메뉴판"}</Badge>
                 <span className="ml-auto text-xs text-zinc-500">{formatDateTime(row.createdAt)}</span>
               </div>
               {row.issues.length > 0 && (
-                <p className="mt-2 text-sm text-zinc-300">
+                <p className="mt-2 text-sm text-zinc-700">
                   {row.issues.map((issue) => ISSUE_LABEL[issue] ?? issue).join(", ")}
                 </p>
               )}
               {row.comment && (
-                <p className="mt-1.5 rounded-lg bg-black/30 p-2.5 text-sm text-zinc-300 whitespace-pre-wrap break-all">
+                <p className="mt-1.5 rounded-lg bg-zinc-100 p-2.5 text-sm text-zinc-700 whitespace-pre-wrap break-all">
                   {row.comment}
                 </p>
               )}
