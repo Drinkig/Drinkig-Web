@@ -1,82 +1,58 @@
 import { motion } from "motion/react";
 import { useLanguage, type TranslationKey } from "../i18n";
-import { MatchScoreIllust, ScanIllust, ChatbotIllust, TastingNoteIllust, CellarIllust } from "./FeatureIllustrations";
-import { type ComponentType } from "react";
-import { fadeUp, slideIn } from "../lib/motion";
+import { cn } from "./ui/utils";
+import { rise } from "../lib/motion";
+import { PhoneFrame } from "./PhoneFrame";
 
-const colorMap: Record<string, { bg: string; border: string }> = {
-  purple: { bg: "from-purple-500/10 to-transparent", border: "border-purple-500/10" },
-  blue: { bg: "from-blue-500/10 to-transparent", border: "border-blue-500/10" },
-  pink: { bg: "from-pink-500/10 to-transparent", border: "border-pink-500/10" },
-  amber: { bg: "from-amber-500/10 to-transparent", border: "border-amber-500/10" },
-  emerald: { bg: "from-emerald-500/10 to-transparent", border: "border-emerald-500/10" },
-};
+// 기능 네 가지. 이미지는 전부 앱스토어에 올린 실제 화면. caption 키는 alt 텍스트로만 쓴다.
+const FEATURES = [
+  { key: "scan", src: "/images/shot-scan.webp", width: 720, height: 1281 },
+  { key: "pairing", src: "/images/shot-pairing.webp", width: 720, height: 1358 },
+  { key: "note", src: "/images/shot-note.webp", width: 720, height: 1358 },
+  { key: "cellar", src: "/images/shot-cellar.webp", width: 720, height: 1358 },
+] as const;
 
-interface FeatureItem {
-  titleKey: TranslationKey;
-  subtitleKey: TranslationKey;
-  descKey: TranslationKey;
-  color: string;
-  Illust: ComponentType<{ className?: string }>;
-}
-
-const featureList: FeatureItem[] = [
-  { titleKey: "features.match.title", subtitleKey: "features.match.subtitle", descKey: "features.match.desc", color: "purple", Illust: MatchScoreIllust },
-  { titleKey: "features.scan.title", subtitleKey: "features.scan.subtitle", descKey: "features.scan.desc", color: "blue", Illust: ScanIllust },
-  { titleKey: "features.chat.title", subtitleKey: "features.chat.subtitle", descKey: "features.chat.desc", color: "pink", Illust: ChatbotIllust },
-  { titleKey: "features.note.title", subtitleKey: "features.note.subtitle", descKey: "features.note.desc", color: "amber", Illust: TastingNoteIllust },
-  { titleKey: "features.cellar.title", subtitleKey: "features.cellar.subtitle", descKey: "features.cellar.desc", color: "emerald", Illust: CellarIllust },
-];
+type FeatureKey = (typeof FEATURES)[number]["key"];
+const k = (key: FeatureKey, part: "eyebrow" | "title" | "desc" | "caption") =>
+  `features.${key}.${part}` as TranslationKey;
 
 export function FeaturesSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="features" className="py-28 bg-surface-sunken relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-900/5 rounded-full blur-[150px]" />
-
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <motion.div className="text-center mb-20" {...fadeUp()}>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+    <section id="features" className="scroll-mt-20">
+      <div className="mx-auto max-w-6xl px-6">
+        <motion.div className="pt-16 md:pt-24" {...rise()}>
+          <p className="eyebrow">{t("features.eyebrow")}</p>
+          <h2 className="mt-5 max-w-2xl text-3xl font-bold leading-[1.2] tracking-[-0.03em] text-ink md:text-[2.75rem]">
             {t("features.title")}
           </h2>
-          <p className="text-gray-400 text-lg">
-            {t("features.subtitle")}
-          </p>
         </motion.div>
 
-        <div className="space-y-12">
-          {featureList.map((feature, index) => {
-            const colors = colorMap[feature.color];
-            const { Illust } = feature;
-            const isEven = index % 2 === 0;
-            return (
-              <motion.div
-                key={feature.titleKey}
-                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 lg:gap-14 p-8 md:p-12 rounded-3xl bg-gradient-to-br ${colors.bg} border ${colors.border}`}
-                {...slideIn(isEven)}
-              >
-                {/* 텍스트 */}
-                <motion.div className="flex-1 text-center lg:text-left" {...fadeUp(0.2)}>
-                  <p className="text-sm text-purple-400 font-medium mb-2 tracking-wide">
-                    {t(feature.subtitleKey)}
-                  </p>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                    {t(feature.titleKey)}
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed max-w-md mx-auto lg:mx-0 text-base whitespace-pre-line">
-                    {t(feature.descKey)}
-                  </p>
-                </motion.div>
-
-                {/* 일러스트 */}
-                <motion.div className="flex-shrink-0" {...fadeUp(0.3)}>
-                  <Illust className="w-[200px] h-[200px] md:w-[240px] md:h-[240px]" />
-                </motion.div>
+        {FEATURES.map((f, i) => {
+          const flip = i % 2 === 1;
+          return (
+            <article
+              key={f.key}
+              className={cn(
+                "grid gap-10 py-16 md:py-24 lg:grid-cols-2 lg:items-center lg:gap-x-20",
+                i > 0 && "border-t border-paper-line",
+              )}
+            >
+              <motion.div className={cn("max-w-lg", flip && "lg:order-2")} {...rise()}>
+                <p className="eyebrow">{t(k(f.key, "eyebrow"))}</p>
+                <h3 className="mt-5 whitespace-pre-line text-[1.9rem] font-bold leading-[1.22] tracking-[-0.03em] text-ink md:text-[2.4rem]">
+                  {t(k(f.key, "title"))}
+                </h3>
+                <p className="mt-5 text-lg leading-[1.7] text-ink-soft">{t(k(f.key, "desc"))}</p>
               </motion.div>
-            );
-          })}
-        </div>
+
+              <figure className={cn(flip && "lg:order-1")}>
+                <PhoneFrame src={f.src} alt={t(k(f.key, "caption"))} width={f.width} height={f.height} />
+              </figure>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

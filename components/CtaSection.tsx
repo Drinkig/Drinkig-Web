@@ -2,36 +2,39 @@ import { motion } from "motion/react";
 import { useLanguage } from "../i18n";
 import { APP_STORE_URL } from "../lib/constants";
 import { AppleLogo } from "./icons";
-import { fadeUp } from "../lib/motion";
+import { float, resolve, rise } from "../lib/motion";
 
 export function CtaSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-28 bg-surface-sunken relative overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-purple-900/15 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <motion.div className="text-center max-w-2xl mx-auto" {...fadeUp()}>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-5">
-            {t("cta.title")}
-          </h2>
-          <p className="text-gray-400 text-lg mb-10 whitespace-pre-line">
-            {t("cta.description")}
-          </p>
-
-          <a
-            href={APP_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center h-14 px-8 bg-purple-600 text-white font-semibold rounded-full hover:bg-purple-500 hover:shadow-lg hover:shadow-purple-500/20 transition-all"
-          >
-            <AppleLogo className="w-5 h-5 mr-2.5" />
-            {t("cta.button")}
-          </a>
-        </motion.div>
+    <section className="wash-ink text-paper">
+      <div className="grad-rule" />
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid items-center gap-12 py-20 md:py-28 lg:grid-cols-12">
+          <motion.div className="lg:col-span-7" {...rise()}>
+            <h2 className="whitespace-pre-line text-3xl font-bold leading-[1.2] tracking-[-0.03em] md:text-[2.75rem]">
+              {t("cta.title")}
+            </h2>
+            <p className="mt-5 max-w-md text-lg leading-[1.7] text-paper/70">{t("cta.description")}</p>
+            <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="btn-primary mt-10">
+              <AppleLogo className="h-[18px] w-[18px]" />
+              {t("cta.button")}
+            </a>
+          </motion.div>
+          <motion.figure className="lg:col-span-4 lg:col-start-9" {...resolve(0.1)}>
+            <motion.img
+              src="/images/bottles.webp"
+              alt=""
+              width={900}
+              height={899}
+              loading="lazy"
+              decoding="async"
+              className="mx-auto w-52 md:w-64 lg:w-full"
+              {...float(7, 6.5, 0.5)}
+            />
+          </motion.figure>
+        </div>
       </div>
     </section>
   );
