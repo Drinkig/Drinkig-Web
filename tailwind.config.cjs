@@ -47,13 +47,26 @@ module.exports = {
         border: "hsl(var(--border) / <alpha-value>)",
         input: "hsl(var(--input) / <alpha-value>)",
         ring: "hsl(var(--ring) / <alpha-value>)",
-        // 다크 서피스 단계 (하드코딩 hex 대체용)
-        surface: {
-          base: "#0a0a0a",
-          sunken: "#050505",
-          raised: "#111111",
-          overlay: "#1a1a1a",
+        // 마케팅 사이트 팔레트: 종이, 잉크, 그리고 보라 하나.
+        paper: {
+          DEFAULT: "#F6F2EA", // 바탕
+          deep: "#EDE7DB", // 이미지 프레임, 띠
+          line: "#DCD4C6", // 헤어라인
         },
+        ink: {
+          DEFAULT: "#1B1A17", // 제목, 본문 강조
+          soft: "#4A4842", // 본문
+          muted: "#75716A", // 캡션, 보조
+        },
+        brand: {
+          DEFAULT: "#7E13B1", // 드링키지 보라. CTA와 워드마크에만.
+          deep: "#650E8F",
+          tint: "#F1E7F6",
+        },
+        // 보조색: 보라에서 번진 라일락, 와인 빛 블러시, 코르크 버터. 워시와 그라데이션 라인에만 쓴다.
+        lilac: "#D9C4EA",
+        blush: "#F3CFC5",
+        butter: "#F6E3B4",
       },
       borderRadius: {
         lg: "var(--radius)",

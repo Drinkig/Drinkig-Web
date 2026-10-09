@@ -2,33 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 마케팅 사이트 기본 테마: 종이(#F6F2EA) 위에 잉크(#1B1A17), 포인트는 보라(#7E13B1) 하나.
+   shadcn 변수는 ui/* 공용 컴포넌트(Button 등)가 읽는다. */
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 263.4 70% 50.4%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --background: 40 38% 94%;
+    --foreground: 40 7% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 40 7% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 40 7% 10%;
+    --primary: 281 81% 38%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 30% 89%;
+    --secondary-foreground: 40 7% 10%;
+    --muted: 40 30% 89%;
+    --muted-foreground: 40 5% 44%;
+    --accent: 40 30% 89%;
+    --accent-foreground: 40 7% 10%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 40 22% 82%;
+    --input: 40 22% 82%;
+    --ring: 281 81% 38%;
     --radius: 0.75rem;
+    /* 브랜드 그라데이션: 보라 → 라일락 → 블러시 → 버터. 내비 밑줄, 구분선, 워시에만. */
+    --grad: linear-gradient(90deg, #7e13b1, #d9c4ea 38%, #f3cfc5 70%, #f6e3b4);
+    --ease: cubic-bezier(0.2, 0, 0, 1);
   }
 }
 
-/* 어드민 전용 라이트 테마 — 마케팅 사이트(다크)와 분리된 스코프.
-   ui/* 공용 컴포넌트(Button 등)가 이 변수를 읽으므로 어드민 루트에 .admin-light만 붙이면 된다.
+/* 어드민 전용 라이트 테마 — 마케팅 사이트와 분리된 스코프.
+   ui/* 공용 컴포넌트가 이 변수를 읽으므로 어드민 루트에 .admin-light만 붙이면 된다.
    키컬러는 드링키지 보라(purple-600 #9333ea) 하나로 통일. */
 @layer base {
   .admin-light {
@@ -69,26 +74,31 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    @apply bg-surface-base text-foreground antialiased;
+    @apply bg-paper text-ink antialiased;
     word-break: keep-all;
   }
 
   /* 키보드 포커스 가시성 */
   :focus-visible {
-    outline: 2px solid theme("colors.purple.400");
-    outline-offset: 2px;
+    outline: 2px solid theme("colors.brand.DEFAULT");
+    outline-offset: 3px;
   }
 
-  /* 시스템의 동작 줄이기 설정 존중 (CSS 애니메이션/트랜지션) */
+  /* 시스템의 동작 줄이기 설정 존중 */
   @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
     *,
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
     }
   }
 
@@ -96,13 +106,122 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0a0a0a;
+    background: theme("colors.paper.DEFAULT");
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-zinc-800 rounded-full;
+    @apply bg-paper-line rounded-full;
   }
 
   ::selection {
-    @apply bg-purple-500/20 text-purple-200;
+    @apply bg-brand-tint text-brand-deep;
+  }
+}
+
+/* 마케팅 사이트에서 반복되는 몇 가지 조각. 섹션마다 클래스가 흩어지지 않도록 여기서만 정의한다. */
+@layer components {
+  /* 섹션 머리말: "01 · 라벨 스캔" 같은 작은 글자 */
+  .eyebrow {
+    @apply text-xs font-medium tracking-[0.16em] text-ink-muted;
+  }
+  /* 이미지 아래 한 줄 설명 */
+  .caption {
+    @apply text-[13px] leading-relaxed text-ink-muted;
+  }
+  /* 주 버튼: 보라 채움. App Store 링크에만 쓴다. */
+  .btn-primary {
+    @apply inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-brand px-6 text-[15px] font-semibold text-white transition-colors hover:bg-brand-deep;
+  }
+  /* 보조 버튼: 헤어라인 테두리 */
+  .btn-secondary {
+    @apply inline-flex h-12 items-center justify-center rounded-full border border-ink/20 px-6 text-[15px] font-medium text-ink transition-colors hover:border-ink;
+  }
+  .btn-primary,
+  .btn-secondary {
+    transition: background-color 160ms var(--ease), border-color 160ms var(--ease), box-shadow 200ms var(--ease), transform 120ms var(--ease);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 10px 24px -12px rgba(126, 19, 177, 0.55);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active,
+  .btn-secondary:active {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+
+  /* 내비 링크: 브랜드 그라데이션이 왼쪽에서 쓸려 들어오는 밑줄 (Cabine의 탭) */
+  .nav-link {
+    @apply relative text-sm text-ink-soft transition-colors hover:text-ink;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--grad);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 320ms var(--ease);
+  }
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after,
+  .nav-link[aria-current="true"]::after {
+    transform: scaleX(1);
+  }
+  .nav-link[aria-current="true"] {
+    @apply text-ink;
+  }
+
+  /* 브랜드 그라데이션 한 줄 */
+  .grad-rule {
+    height: 2px;
+    background: var(--grad);
+  }
+
+  /* 파스텔 워시: 종이 위에 라일락·블러시·버터가 번진 바탕. 블러 덩어리가 아니라 종이 얼룩 정도. */
+  .wash-hero::before {
+    content: "";
+    position: absolute;
+    inset: -15%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(45% 50% at 85% 15%, rgba(217, 196, 234, 0.6), transparent 70%),
+      radial-gradient(35% 40% at 8% 90%, rgba(243, 207, 197, 0.55), transparent 70%),
+      radial-gradient(28% 28% at 60% 95%, rgba(246, 227, 180, 0.4), transparent 70%);
+    animation: drift 22s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    from {
+      transform: translate3d(-3%, -2%, 0) scale(1);
+    }
+    to {
+      transform: translate3d(3%, 3%, 0) scale(1.08);
+    }
+  }
+  .wash-frame {
+    pointer-events: none;
+    background:
+      radial-gradient(70% 55% at 18% 14%, rgba(217, 196, 234, 0.6), transparent 70%),
+      radial-gradient(60% 50% at 84% 30%, rgba(243, 207, 197, 0.55), transparent 70%),
+      radial-gradient(60% 50% at 60% 92%, rgba(246, 227, 180, 0.5), transparent 70%),
+      theme("colors.paper.deep");
+  }
+  .wash-ink {
+    background:
+      radial-gradient(50% 60% at 90% 0%, rgba(126, 19, 177, 0.35), transparent 70%),
+      radial-gradient(40% 40% at 0% 100%, rgba(243, 207, 197, 0.12), transparent 70%),
+      theme("colors.ink.DEFAULT");
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link::after,
+    .btn-primary,
+    .btn-secondary {
+      transition: none;
+    }
   }
 }
