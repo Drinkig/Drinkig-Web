@@ -42,3 +42,12 @@ Hero → 기능 4행(교차 배치) → 사용 방법 3단 → 드링키지는 �
 - 홈에는 "드링키지는"과 CTA 사이 한 줄 띠, 헤더·푸터 링크만. 소비자 랜딩과 매장 피칭은 페이지를 분리한다.
 - 아직 없는 제휴 매장 로고·후기·숫자는 넣지 않는다.
 - 문의 폼은 mailto 대신 `api/inquiry.ts`(Vercel Node Function)로 POST → Gmail SMTP(nodemailer)로 메일. 환경변수 `GMAIL_USER`, `GMAIL_APP_PASSWORD` 필수, `INQUIRY_TO` 선택(기본은 보내는 계정 자신). 외부 서비스 가입·도메인 인증 불필요. (Slack은 사용자가 안 써서, Resend는 가입이 필요해서 뺌.) vercel.json의 SPA 리라이트는 `/api/`를 제외하도록 변경. 성공 시 "문의가 접수되었습니다 / 48시간 안에 연락" 팝업.
+
+## 매장 QR 손님 웹앱 + 어드민 매장 관리 (2026-10-10)
+설계 결정: 매장 와인은 와인 DB와 **이름 매칭을 하지 않는다**. 매장이 부르는 이름·가격·다섯 수치(당도·산도·타닌·바디·알코올 1~5)를 그대로 저장하고, 추천은 그 수치로만 계산한다(앱 추천과 같은 거리식, 100 − 차이합×4). 와인 DB 연결은 사진을 붙이기 위한 선택이며 어드민에서 검색해 ID로 붙인다.
+
+- **서버(drinkig-server, 브랜치 `feat/store-qr`, 미커밋)**: `domain/store` — Store(slug=QR 코드), StoreWine, StoreEvent. 공개 `/store/**`(nearby, {slug}, {slug}/recommend, {slug}/event)는 SecurityConfig permitAll + JWTFilter 통과. 어드민 `/admin/store/**`(목록·등록·수정·상태, 와인 목록, CSV 업로드, 와인 수정/삭제, 통계). CSV는 한글·영문 헤더, "45,000원" 가격, UTF-8/MS949 모두 처리하며 오류가 하나라도 있으면 아무것도 반영하지 않는다(전부 아니면 전무). 단위 테스트 7개 통과.
+- **어드민(Drinkig-Web)**: `/admin/stores` 목록+추가, `/admin/stores/:id` 상세(정보 수정, 노출 토글, CSV 업로드, 와인 리스트·사진 연결·숨김·삭제, QR PNG 1024px 다운로드, 최근 30일 통계).
+- **손님 웹앱(Drinkig-Web)**: `/s` 근처 매장(위치 허용 시 3km→20km→전체), `/s/{slug}` intro → 질문 5개(일상 말, '잘 모르겠어요') → 예산 슬라이더+종류 → 결과(점수순, 예산 밖은 따로). 세션 id로 VISIT/TASTE_SUBMIT/RESULT_VIEW/WINE_CLICK 이벤트. 종이 톤, 모바일 전용, 클라이언트 전용 라우트(main.tsx가 프리렌더 안 된 경로는 hydrate 대신 새로 렌더).
+- **배포 전 확인**: 서버 CORS 허용 목록(`app.cors.allowed-origins`, CD 시크릿 APPLICATION)에 `https://www.drinkig.com` 포함 여부. ddl-auto=update라 테이블은 자동 생성.
+- **미구현(다음)**: 결과 화면의 카카오 로그인 → 취향 저장 → 앱 유도. 지금은 App Store 링크만.

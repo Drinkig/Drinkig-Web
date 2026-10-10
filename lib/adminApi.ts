@@ -69,10 +69,11 @@ async function tryReissue(): Promise<boolean> {
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const doFetch = () => {
     const token = localStorage.getItem(ACCESS_KEY);
+    const isForm = typeof FormData !== "undefined" && init?.body instanceof FormData;
     return fetch(`${API_BASE}${path}`, {
       ...init,
       headers: {
-        "Content-Type": "application/json",
+        ...(isForm ? {} : { "Content-Type": "application/json" }),
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...(init?.headers ?? {}),
       },
@@ -312,4 +313,136 @@ export function fetchScanFeedbacks(
   const params = new URLSearchParams({ page: String(page), size: "10" });
   if (rating) params.set("rating", rating);
   return apiFetch(`/admin/scan-feedback?${params.toString()}`);
+}
+
+// ---------- 매장 (QR) ----------
+
+export type StoreType = "RESTAURANT" | "WINE_SHOP" | "OTHER";
+export type StoreStatus = "ACTIVE" | "INACTIVE";
+
+export interface Store {
+  storeId: number;
+  name: string;
+  slug: string;
+  type: StoreType;
+  status: StoreStatus;
+  address: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  description: string | null;
+  memo: string | null;
+  wineCount: number;
+  createdAt: string;
+  updatedAt: string | null;
+}
+
+export interface StoreInput {
+  name: string;
+  slug?: string;
+  type: StoreType;
+  address?: string;
+  latitude?: number | null;
+  longitude?: number | null;
+  description?: string;
+  memo?: string;
+}
+
+export interface StoreWine {
+  storeWineId: number;
+  name: string;
+  sort: string;
+  price: number;
+  glassPrice: number | null;
+  sweetness: number;
+  acidity: number;
+  tannin: number;
+  body: number;
+  alcohol: number;
+  description: string | null;
+  available: boolean;
+  sortOrder: number;
+  wineId: number | null;
+  wineName: string | null;
+  imageUrl: string | null;
+}
+
+export interface StoreWineCsvResult {
+  applied: boolean;
+  created: number;
+  updated: number;
+  deleted: number;
+  errors: string[];
+}
+
+export interface StoreStats {
+  days: number;
+  visits: number;
+  visitSessions: number;
+  tasteSubmits: number;
+  wineClicks: number;
+  tasteAverage: Record<string, number>;
+  topWines: { storeWineId: number; name: string; clicks: number }[];
+}
+
+export interface AdminWinePreview {
+  wineId: number;
+  name: string;
+  nameEng: string | null;
+  sort: string | null;
+  variety: string | null;
+  country: string | null;
+  region: string | null;
+}
+
+export function fetchStores(page: number, status?: StoreStatus): Promise<PageResponse<Store>> {
+  const params = new URLSearchParams({ page: String(page), size: "20" });
+  if (status) params.set("status", status);
+  return apiFetch(`/admin/store?${params.toString()}`);
+}
+
+export function createStore(input: StoreInput): Promise<Store> {
+  return apiFetch("/admin/store", { method: "POST", body: JSON.stringify(input) });
+}
+
+export function fetchStore(storeId: number): Promise<Store> {
+  return apiFetch(`/admin/store/${storeId}`);
+}
+
+export function updateStore(storeId: number, input: Partial<StoreInput>): Promise<Store> {
+  return apiFetch(`/admin/store/${storeId}`, { method: "PATCH", body: JSON.stringify(input) });
+}
+
+export function changeStoreStatus(storeId: number, status: StoreStatus): Promise<Store> {
+  return apiFetch(`/admin/store/${storeId}/status`, { method: "PATCH", body: JSON.stringify({ status }) });
+}
+
+export function fetchStoreWines(storeId: number): Promise<StoreWine[]> {
+  return apiFetch(`/admin/store/${storeId}/wine`);
+}
+
+export function uploadStoreWinesCsv(storeId: number, file: File): Promise<StoreWineCsvResult> {
+  const form = new FormData();
+  form.append("file", file);
+  return apiFetch(`/admin/store/${storeId}/wine/csv`, { method: "POST", body: form });
+}
+
+export function updateStoreWine(
+  storeId: number,
+  storeWineId: number,
+  patch: Partial<Pick<StoreWine, "name" | "sort" | "price" | "glassPrice" | "sweetness" | "acidity" | "tannin" | "body" | "alcohol" | "description" | "available">> & { wineId?: number },
+): Promise<StoreWine> {
+  return apiFetch(`/admin/store/${storeId}/wine/${storeWineId}`, { method: "PATCH", body: JSON.stringify(patch) });
+}
+
+export function deleteStoreWine(storeId: number, storeWineId: number): Promise<string> {
+  return apiFetch(`/admin/store/${storeId}/wine/${storeWineId}`, { method: "DELETE" });
+}
+
+export function fetchStoreStats(storeId: number, days = 30): Promise<StoreStats> {
+  return apiFetch(`/admin/store/${storeId}/stats?days=${days}`);
+}
+
+export function searchAdminWines(searchName: string, page = 0): Promise<PageResponse<AdminWinePreview>> {
+  const params = new URLSearchParams({ searchName, page: String(page), size: "7" });
+  return apiFetch(`/admin/wine?${params.toString()}`);
 }

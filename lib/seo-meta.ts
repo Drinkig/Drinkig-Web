@@ -56,9 +56,16 @@ const STATIC_META: Record<string, Record<Lang, RouteMeta>> = {
   },
 };
 
+const STORE_APP_META: Record<Lang, RouteMeta> = {
+  ko: { title: "이 집 와인, 내 입맛에 맞게 | 드링키지", description: "테이블의 QR을 찍고 질문 몇 개에 답하면 이 매장 와인 중 지금 입맛에 맞는 병을 골라드려요." },
+  en: { title: "Wines here, matched to you | Drinkig", description: "Scan the table QR, answer a few questions, and get this store's wines ranked for your taste." },
+};
+
 export function getMeta(pathname: string): RouteMeta {
   const lang = pathnameToLang(pathname);
   const base = localizePath(pathname, "ko");
+
+  if (base === "/s" || base.startsWith("/s/")) return STORE_APP_META[lang];
 
   const noticeMatch = base.match(/^\/notices\/(\d+)$/);
   if (noticeMatch) {

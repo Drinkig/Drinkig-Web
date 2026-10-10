@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { BarChart3, Flag, LogOut, MessageSquareWarning, Wine } from "lucide-react";
+import { BarChart3, Flag, LogOut, MessageSquareWarning, Store, Wine } from "lucide-react";
 import { clearSession, fetchMe, getAdminName, isLoggedIn } from "../../lib/adminApi";
 import { cn } from "../ui/utils";
 
@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { to: "/admin/requests", label: "와인 등록 요청", icon: Wine },
   { to: "/admin/reports", label: "신고 관리", icon: Flag },
   { to: "/admin/feedback", label: "스캔 피드백", icon: MessageSquareWarning },
+  { to: "/admin/stores", label: "매장 관리", icon: Store },
 ];
 
 export function AdminLayout() {

@@ -20,6 +20,10 @@ const NoticeDetail = lazy(() =>
 );
 const Stores = lazy(() => import("./components/Stores").then((m) => ({ default: m.Stores })));
 
+// 매장 QR 손님 웹앱 — 클라이언트 전용(프리렌더 제외, /en 미러 없음)
+const StoreFinder = lazy(() => import("./components/store/StoreFinder").then((m) => ({ default: m.StoreFinder })));
+const StoreApp = lazy(() => import("./components/store/StoreApp").then((m) => ({ default: m.StoreApp })));
+
 // 어드민 — 클라이언트 전용(프리렌더 제외, /en 미러 없음)
 const AdminLogin = lazy(() =>
   import("./components/admin/AdminLogin").then((m) => ({ default: m.AdminLogin })),
@@ -38,6 +42,10 @@ const AdminReports = lazy(() =>
 );
 const AdminScanFeedback = lazy(() =>
   import("./components/admin/AdminScanFeedback").then((m) => ({ default: m.AdminScanFeedback })),
+);
+const AdminStores = lazy(() => import("./components/admin/AdminStores").then((m) => ({ default: m.AdminStores })));
+const AdminStoreDetail = lazy(() =>
+  import("./components/admin/AdminStoreDetail").then((m) => ({ default: m.AdminStoreDetail })),
 );
 
 const routes: Array<{ path: string; element: ReactElement }> = [
@@ -70,6 +78,9 @@ export function AppShell() {
                   element={r.element}
                 />
               ))}
+              {/* 매장 QR 손님 웹앱 (클라이언트 전용) */}
+              <Route path="/s" element={<StoreFinder />} />
+              <Route path="/s/:slug" element={<StoreApp />} />
               {/* 어드민 (클라이언트 전용) */}
               <Route path="/admin" element={<AdminLogin />} />
               <Route element={<AdminLayout />}>
@@ -77,6 +88,8 @@ export function AppShell() {
                 <Route path="/admin/requests" element={<AdminWineRequests />} />
                 <Route path="/admin/reports" element={<AdminReports />} />
                 <Route path="/admin/feedback" element={<AdminScanFeedback />} />
+                <Route path="/admin/stores" element={<AdminStores />} />
+                <Route path="/admin/stores/:storeId" element={<AdminStoreDetail />} />
               </Route>
             </Routes>
           </Suspense>
