@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useLanguage } from "../i18n";
 import { rise } from "../lib/motion";
+import { Em } from "./Em";
 
 const POINTS = ["match", "language", "easy"] as const;
 
@@ -13,7 +14,7 @@ export function WhyDrinkig() {
         <motion.div className="max-w-3xl" {...rise()}>
           <p className="eyebrow">{t("why.eyebrow")}</p>
           <p className="mt-5 whitespace-pre-line text-2xl font-bold leading-[1.35] tracking-[-0.03em] text-ink md:text-[2.5rem]">
-            {t("why.lead")}
+            <Em text={t("why.lead")} />
           </p>
         </motion.div>
 

@@ -3,15 +3,18 @@ import { useLanguage } from "../i18n";
 import { APP_STORE_URL } from "../lib/constants";
 import { AppleLogo } from "./icons";
 import { EASE, float, riseNow, wordChild, wordsParent } from "../lib/motion";
+import { Em } from "./Em";
 
-// 제목을 단어 단위로 쪼개 차례로 띄운다. 줄바꿈은 그대로 유지.
+// 제목을 단어 단위로 쪼개 차례로 띄운다. **강조** 표기는 단어째로 묶어 Em이 칠한다.
 function Words({ text }: { text: string }) {
+  // 토큰 = (**강조** + 붙은 조사) 또는 공백 없는 단어. 강조 안의 공백은 유지된다.
+  const tokens = text.match(/\*\*[^*]+\*\*\S*|\S+/g) ?? [];
   return (
     <>
-      {text.split(" ").map((w, i) => (
+      {tokens.map((w, i) => (
         <motion.span key={i} className="inline-block" {...wordChild}>
-          {w}
-          {i < text.split(" ").length - 1 ? " " : ""}
+          <Em text={w} />
+          {i < tokens.length - 1 ? "\u00A0" : ""}
         </motion.span>
       ))}
     </>

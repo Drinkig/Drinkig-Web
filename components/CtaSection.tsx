@@ -3,22 +3,26 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n";
 import { APP_STORE_URL } from "../lib/constants";
 import { AppleLogo } from "./icons";
+import { Em } from "./Em";
 import { float, resolve, rise } from "../lib/motion";
 
-// 소비자 랜딩 끝에서 매장 페이지로 보내는 띠. 한 문장과 링크 하나.
+// 소비자 랜딩 맨 아래, 푸터 바로 위의 한 줄. 매장 쪽 안내는 여기 하나로 끝낸다.
 export function StoresBand() {
   const { t, lp } = useLanguage();
   return (
-    <section className="border-t border-paper-line">
-      <motion.div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-12 md:flex-row md:items-center md:justify-between md:py-14" {...rise()}>
-        <div>
-          <p className="text-xl font-semibold text-ink md:text-2xl">{t("home.stores.title")}</p>
-          <p className="mt-1.5 text-ink-soft">{t("home.stores.desc")}</p>
-        </div>
-        <Link to={lp("/stores")} className="btn-secondary shrink-0">
+    <section className="bg-paper-deep">
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-7 md:flex-row md:items-center md:justify-between">
+        <p className="text-ink">
+          <span className="font-semibold">{t("home.stores.title")}</span>
+          <span className="hidden text-ink-soft md:inline"> · {t("home.stores.desc")}</span>
+        </p>
+        <Link to={lp("/stores")} className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink">
           {t("home.stores.link")}
+          <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
         </Link>
-      </motion.div>
+      </div>
     </section>
   );
 }
@@ -33,7 +37,7 @@ export function CtaSection() {
         <div className="grid items-center gap-12 py-20 md:py-28 lg:grid-cols-12">
           <motion.div className="lg:col-span-7" {...rise()}>
             <h2 className="whitespace-pre-line text-3xl font-bold leading-[1.2] tracking-[-0.03em] md:text-[2.75rem]">
-              {t("cta.title")}
+              <Em text={t("cta.title")} />
             </h2>
             <p className="mt-5 max-w-md text-lg leading-[1.7] text-paper/70">{t("cta.description")}</p>
             <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="btn-primary mt-10">

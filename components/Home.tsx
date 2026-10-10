@@ -15,8 +15,8 @@ export function Home() {
                 <FeaturesSection />
                 <HowItWorks />
                 <WhyDrinkig />
-                <StoresBand />
                 <CtaSection />
+                <StoresBand />
             </main>
             <Footer />
         </>

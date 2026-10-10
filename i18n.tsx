@@ -61,7 +61,7 @@ const translations = {
     "stores.form.subject": "[드링키지 매장 도입 문의]",
 
     // Hero
-    "hero.title1": "별점 말고 내 취향으로,",
+    "hero.title1": "별점 말고 **내 취향**으로,",
     "hero.title2": "나한테 맞는 와인 점수",
     "hero.description":
       "내 입맛만 알려주면 모든 와인에 나만의 점수가 매겨져요.",
@@ -71,7 +71,7 @@ const translations = {
 
     // Features
     "features.eyebrow": "Features",
-    "features.title": "와인 고를 때 막막했다면",
+    "features.title": "와인 고를 때 **막막했다면**",
     "features.scan.eyebrow": "01 · Label scan",
     "features.scan.title": "이름이 어려운 와인,\n찍으면 바로 찾아줘요",
     "features.scan.desc":
@@ -190,7 +190,7 @@ const translations = {
 
     // Hero
     "hero.title1": "Not star ratings.",
-    "hero.title2": "A score that fits your taste",
+    "hero.title2": "A score that fits **your taste**",
     "hero.description":
       "Tell us your taste. Every wine gets your score.",
     "hero.appStore": "Get it on the App Store",
@@ -199,7 +199,7 @@ const translations = {
 
     // Features
     "features.eyebrow": "Features",
-    "features.title": "Lost in front of a wall of wine?",
+    "features.title": "Lost in front of **a wall of wine?**",
     "features.scan.eyebrow": "01 · Label scan",
     "features.scan.title": "Long, hard names?\nJust take a photo",
     "features.scan.desc":

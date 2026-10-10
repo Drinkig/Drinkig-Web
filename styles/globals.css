@@ -196,17 +196,19 @@
     color: theme("colors.ink.DEFAULT");
   }
 
-  /* 후킹 강조. 제목은 보라 형광펜, 본문은 라일락 글자. */
+  /* 후킹 강조: 상자 없이 글자색만 보라로. 종이 위는 브랜드 보라, 잉크 위는 밝힌 보라. */
   .hl {
-    @apply rounded-[0.15em] bg-brand text-paper;
-    padding: 0.02em 0.12em;
-    margin: 0 -0.04em; /* 칠한 상자가 글 흐름을 밀지 않도록 */
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-    background-image: linear-gradient(100deg, #7e13b1, #9b2fd1);
+    @apply bg-transparent text-brand;
   }
+  .tone-dark .hl {
+    color: #b04cf0; /* 잉크 위에서도 채도를 유지한 보라 */
+  }
+  /* 본문 강조는 색 없이 굵기만. 제목의 보라와 겹치지 않게. */
   .hl-text {
-    @apply font-semibold text-lilac;
+    @apply font-semibold text-ink;
+  }
+  .tone-dark .hl-text {
+    @apply text-paper;
   }
 
   /* 매장(기업) 페이지는 잉크 톤. 소비자 페이지(종이)와 확실히 다르게 읽히도록. */
