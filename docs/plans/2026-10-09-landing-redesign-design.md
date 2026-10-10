@@ -41,3 +41,4 @@ Hero → 기능 4행(교차 배치) → 사용 방법 3단 → 드링키지는 �
 - 폼은 서버 없이 mailto로 sean@gourmevel.com에 제목·본문을 채워 메일 앱을 연다. 주소는 화면에 노출하지 않는다.
 - 홈에는 "드링키지는"과 CTA 사이 한 줄 띠, 헤더·푸터 링크만. 소비자 랜딩과 매장 피칭은 페이지를 분리한다.
 - 아직 없는 제휴 매장 로고·후기·숫자는 넣지 않는다.
+- 문의 폼은 mailto 대신 `api/inquiry.ts`(Vercel Node Function)로 POST → Gmail SMTP(nodemailer)로 메일. 환경변수 `GMAIL_USER`, `GMAIL_APP_PASSWORD` 필수, `INQUIRY_TO` 선택(기본은 보내는 계정 자신). 외부 서비스 가입·도메인 인증 불필요. (Slack은 사용자가 안 써서, Resend는 가입이 필요해서 뺌.) vercel.json의 SPA 리라이트는 `/api/`를 제외하도록 변경. 성공 시 "문의가 접수되었습니다 / 48시간 안에 연락" 팝업.

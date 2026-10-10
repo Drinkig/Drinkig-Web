@@ -55,9 +55,14 @@ const translations = {
     "stores.form.type.otherHint": "업종을 적어주세요",
     "stores.form.email": "이메일",
     "stores.form.phone": "연락처",
+    "stores.form.emailError": "이메일 주소를 다시 확인해 주세요.",
     "stores.form.note": "문의 내용 (선택)",
     "stores.form.submit": "문의하기",
-    "stores.form.hint": "누르면 메일 앱이 열립니다.",
+    "stores.form.sentTitle": "문의가 접수되었습니다",
+    "stores.form.sentDesc": "48시간 안에 남겨주신 연락처로 연락드리겠습니다.",
+    "stores.form.sending": "보내는 중…",
+    "stores.form.failed": "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.",
+    "stores.form.sentClose": "확인",
     "stores.form.subject": "[드링키지 매장 도입 문의]",
 
     // Hero
@@ -183,9 +188,14 @@ const translations = {
     "stores.form.type.otherHint": "Tell us what kind of place",
     "stores.form.email": "Email",
     "stores.form.phone": "Phone",
+    "stores.form.emailError": "Please check the email address.",
     "stores.form.note": "Anything else (optional)",
     "stores.form.submit": "Send inquiry",
-    "stores.form.hint": "This opens your mail app.",
+    "stores.form.sentTitle": "Inquiry received",
+    "stores.form.sentDesc": "We will get back to you within 48 hours.",
+    "stores.form.sending": "Sending…",
+    "stores.form.failed": "Something went wrong. Please try again in a moment.",
+    "stores.form.sentClose": "OK",
     "stores.form.subject": "[Drinkig store inquiry]",
 
     // Hero

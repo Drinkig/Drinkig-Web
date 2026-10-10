@@ -11,8 +11,6 @@ export const WORDMARK_INK_SRC = "/images/wordmark-ink.webp";
 export const WORDMARK_PAPER_SRC = "/images/wordmark-paper.webp";
 
 export const CONTACT_EMAIL = "gourmevel@gmail.com";
-/** 매장 도입 문의 수신 메일 */
-export const STORE_INQUIRY_EMAIL = "sean@gourmevel.com";
 
 export const BUSINESS_INFO = {
   name: "고메블 (Gourmevel)",

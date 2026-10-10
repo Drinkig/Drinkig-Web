@@ -3,7 +3,10 @@
         {
             "source": "/(.*)",
             "has": [
-                { "type": "host", "value": "drinkig-web.vercel.app" }
+                {
+                    "type": "host",
+                    "value": "drinkig-web.vercel.app"
+                }
             ],
             "destination": "https://www.drinkig.com/$1",
             "permanent": true
@@ -11,7 +14,7 @@
     ],
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/((?!api/).*)",
             "destination": "/index.html"
         }
     ],
