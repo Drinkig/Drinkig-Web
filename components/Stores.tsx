@@ -218,7 +218,7 @@ export function Stores() {
       <Header dark />
       <main className="tone-dark">
         {/* 히어로 */}
-        <section className="wash-ink relative overflow-hidden pb-16 pt-32 md:pb-24 md:pt-40">
+        <section className="wash-ink relative overflow-hidden pb-8 pt-28 md:pb-24 md:pt-40">
           {/* 사진은 오른쪽 절반의 배경. 왼쪽과 아래가 종이로 녹아든다. */}
           <motion.div
             className="photo-fade-left pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[58%] lg:block"
@@ -233,12 +233,12 @@ export function Stores() {
           <div className="relative z-10 mx-auto max-w-6xl px-6">
             <div className="max-w-4xl">
               <motion.h1
-                className="whitespace-pre-line text-[2.75rem] font-bold leading-[1.15] tracking-[-0.03em] text-paper md:text-[3.75rem] lg:text-[4.25rem]"
+                className="whitespace-pre-line text-[2.125rem] font-bold leading-[1.15] tracking-[-0.03em] text-paper md:text-[3.75rem] lg:text-[4.25rem]"
                 {...riseNow(0.08)}
               >
                 <Em text={t("stores.title")} />
               </motion.h1>
-              <motion.p className="mt-6 max-w-xl text-lg leading-[1.7] text-paper/75" {...riseNow(0.2)}>
+              <motion.p className="mt-6 max-w-xl text-base leading-[1.7] md:text-lg text-paper/75" {...riseNow(0.2)}>
                 <Em text={t("stores.description")} />
               </motion.p>
               <motion.div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center" {...riseNow(0.3)}>
@@ -254,12 +254,12 @@ export function Stores() {
               </motion.div>
             </div>
             {/* 모바일: 사진이 글 아래에서 위로 녹아 올라온다 */}
-            <div className="relative -mx-6 mt-12 lg:hidden" aria-hidden="true">
+            <div className="relative -mx-6 mt-10 lg:hidden" aria-hidden="true">
               <img src="/images/photos/store-hero.webp" alt="" width={1200} height={1500} decoding="async" className="h-72 w-full object-cover object-[center_35%]" />
               <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink to-transparent" />
             </div>
           </div>
-          <div className="relative z-10 mx-auto mt-16 max-w-6xl px-6 md:mt-24">
+          <div className="relative z-10 mx-auto mt-8 max-w-6xl px-6 md:mt-24">
             <motion.div className="grad-rule origin-left" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.1, ease: EASE, delay: 0.6 }} />
           </div>
         </section>
@@ -283,21 +283,21 @@ export function Stores() {
           {/* 사진 전체를 한 단계 어둡게 누르고, 글이 올라가는 오른쪽은 더 어둡게 */}
           <div className="absolute inset-0 bg-ink/45" aria-hidden="true" />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-ink/50 to-ink/90 lg:via-ink/30 lg:to-ink/85" aria-hidden="true" />
-          <div className="relative z-10 mx-auto max-w-6xl px-6 py-28 md:py-40">
+          <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:py-40">
             <motion.div className="lg:ml-auto lg:max-w-[460px]" {...rise()}>
-              <h2 className="whitespace-pre-line text-[2.25rem] font-bold leading-[1.15] tracking-[-0.03em] md:text-[3rem]">
+              <h2 className="whitespace-pre-line text-[1.75rem] font-bold leading-[1.15] tracking-[-0.03em] md:text-[3rem]">
                 <Em text={t("stores.problem.title")} />
               </h2>
-              <p className="mt-6 text-lg leading-[1.8] text-paper/80"><Em text={t("stores.problem.desc")} /></p>
+              <p className="mt-6 text-base leading-[1.8] md:text-lg text-paper/80"><Em text={t("stores.problem.desc")} /></p>
             </motion.div>
           </div>
         </section>
 
         {/* 작동 방식: 4단계 로드맵 */}
-        <section id="flow" className="scroll-mt-20 py-20 md:py-28">
+        <section id="flow" className="scroll-mt-20 py-14 md:py-28">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div {...rise()}>
-              <h2 className="max-w-2xl text-[2.25rem] font-bold leading-[1.15] tracking-[-0.03em] text-paper md:text-[3rem]">
+              <h2 className="max-w-2xl text-[1.75rem] font-bold leading-[1.15] tracking-[-0.03em] text-paper md:text-[3rem]">
                 <Em text={t("stores.flow.title")} />
               </h2>
             </motion.div>
@@ -316,10 +316,10 @@ export function Stores() {
             <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink to-transparent" />
             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink to-transparent" />
           </motion.div>
-          <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div className="relative z-10 mx-auto max-w-6xl px-6 py-14 md:py-28">
             <div className="lg:max-w-[540px]">
               <motion.div {...rise()}>
-                <h2 className="whitespace-pre-line text-[2.25rem] font-bold leading-[1.15] tracking-[-0.03em] text-paper md:text-[3rem]">
+                <h2 className="whitespace-pre-line text-[1.75rem] font-bold leading-[1.15] tracking-[-0.03em] text-paper md:text-[3rem]">
                   <Em text={t("stores.benefit.title")} />
                 </h2>
               </motion.div>
@@ -327,12 +327,12 @@ export function Stores() {
                 {BENEFITS.map((b, i) => (
                   <motion.div key={b} className="py-5" {...rise(0.1 + i * 0.1)}>
                     <dt className="text-lg font-semibold text-paper">{t(`stores.benefit.${b}.title`)}</dt>
-                    <dd className="mt-1.5 text-lg leading-[1.7] text-paper/70"><Em text={t(`stores.benefit.${b}.desc`)} /></dd>
+                    <dd className="mt-1.5 text-base leading-[1.7] md:text-lg text-paper/70"><Em text={t(`stores.benefit.${b}.desc`)} /></dd>
                   </motion.div>
                 ))}
               </dl>
             </div>
-            <div className="relative -mx-6 mt-12 lg:hidden" aria-hidden="true">
+            <div className="relative -mx-6 mt-10 lg:hidden" aria-hidden="true">
               <img src="/images/photos/store-pour.webp" alt="" width={1600} height={1067} loading="lazy" decoding="async" className="h-64 w-full object-cover" />
               <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-ink to-transparent" />
             </div>
@@ -340,18 +340,18 @@ export function Stores() {
         </section>
 
         {/* 준비할 것 · 비용: 두 장의 패널, 가운데 정렬, 위에 브랜드 선 */}
-        <section className="border-t border-paper/10 py-20 md:py-28">
+        <section className="border-t border-paper/10 py-14 md:py-28">
           <div className="mx-auto grid max-w-6xl gap-5 px-6 md:grid-cols-2 md:gap-6">
             {(["setup", "price"] as const).map((k, i) => (
               <motion.div
                 key={k}
-                className="relative overflow-hidden rounded-[24px] bg-paper/[0.06] px-8 py-12 text-center md:px-12 md:py-16"
+                className="relative overflow-hidden rounded-[24px] bg-paper/[0.06] px-6 py-9 text-center md:px-12 md:py-16"
                 {...rise(i * 0.12)}
               >
-                <h2 className="whitespace-pre-line text-[1.75rem] font-bold leading-[1.2] tracking-[-0.03em] text-paper md:text-[2.25rem]">
+                <h2 className="whitespace-pre-line text-[1.5rem] font-bold leading-[1.2] tracking-[-0.03em] text-paper md:text-[2.25rem]">
                   <Em text={t(`stores.${k}.title`)} />
                 </h2>
-                <p className="mx-auto mt-5 max-w-sm whitespace-pre-line text-lg leading-[1.7] text-paper/70">{t(`stores.${k}.desc`)}</p>
+                <p className="mx-auto mt-5 max-w-sm whitespace-pre-line text-base leading-[1.7] md:text-lg text-paper/70">{t(`stores.${k}.desc`)}</p>
               </motion.div>
             ))}
           </div>
@@ -359,10 +359,10 @@ export function Stores() {
 
         {/* 문의 폼: 잉크 띠 */}
         <section id="inquiry" className="scroll-mt-20 border-t border-paper/10 text-paper">
-          <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-12">
+          <div className="mx-auto grid max-w-6xl gap-12 px-6 py-14 md:py-28 lg:grid-cols-12">
             <motion.div className="lg:col-span-5" {...rise()}>
-              <h2 className="text-[2.25rem] font-bold leading-[1.15] tracking-[-0.03em] md:text-[3rem]">{t("stores.form.title")}</h2>
-              <p className="mt-5 max-w-md text-lg leading-[1.7] text-paper/70">{t("stores.form.desc")}</p>
+              <h2 className="text-[1.75rem] font-bold leading-[1.15] tracking-[-0.03em] md:text-[3rem]">{t("stores.form.title")}</h2>
+              <p className="mt-5 max-w-md text-base leading-[1.7] md:text-lg text-paper/70">{t("stores.form.desc")}</p>
             </motion.div>
             {/* 폼은 밝은 면의 상자 안에. 페이지에서 유일한 입력 영역이라 눈에 띄어야 한다. */}
             <motion.div className="rounded-[24px] bg-paper/[0.06] p-6 md:p-10 lg:col-span-7 lg:col-start-6" {...rise(0.1)}>

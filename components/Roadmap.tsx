@@ -71,7 +71,7 @@ export function Roadmap({ steps, className, dark = false }: { steps: RoadmapStep
           </motion.span>
           <motion.div variants={text} custom={i} className="md:mt-7">
             <h3 className={cn("text-xl font-semibold", fg)}>{step.title}</h3>
-            <p className={cn("mt-2 text-lg leading-[1.7]", fgSoft)}>{step.desc}</p>
+            <p className={cn("mt-2 text-base leading-[1.7] md:text-lg", fgSoft)}>{step.desc}</p>
           </motion.div>
         </li>
       ))}

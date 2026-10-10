@@ -9,11 +9,11 @@ export function HowItWorks() {
   const { t } = useLanguage();
 
   return (
-    <section id="how-it-works" className="scroll-mt-20 border-t border-paper-line py-20 md:py-28">
+    <section id="how-it-works" className="scroll-mt-20 border-t border-paper-line py-14 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <motion.div {...rise()}>
           <p className="eyebrow">{t("how.eyebrow")}</p>
-          <h2 className="mt-5 max-w-2xl text-3xl font-bold leading-[1.2] tracking-[-0.03em] text-ink md:text-[2.75rem]">
+          <h2 className="mt-5 max-w-2xl text-[1.75rem] font-bold leading-[1.2] tracking-[-0.03em] text-ink md:text-[2.75rem]">
             {t("how.title")}
           </h2>
         </motion.div>

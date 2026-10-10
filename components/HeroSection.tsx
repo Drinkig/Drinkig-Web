@@ -25,19 +25,19 @@ export function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="wash-hero relative overflow-hidden pb-16 pt-32 md:pb-24 md:pt-40">
+    <section className="wash-hero relative overflow-hidden pb-10 pt-28 md:pb-24 md:pt-40">
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-7">
             <motion.h1
-              className="text-[2.5rem] font-bold leading-[1.2] tracking-[-0.03em] text-ink md:text-[3.4rem] lg:text-[3.6rem]"
+              className="text-[2.25rem] font-bold leading-[1.2] tracking-[-0.03em] text-ink md:text-[3.4rem] lg:text-[3.6rem]"
               {...wordsParent()}
             >
               <Words text={t("hero.title1")} />
               <br />
               <Words text={t("hero.title2")} />
             </motion.h1>
-            <motion.p className="mt-6 max-w-md text-lg leading-[1.7] text-ink-soft" {...riseNow(0.4)}>
+            <motion.p className="mt-6 max-w-md text-base leading-[1.7] md:text-lg text-ink-soft" {...riseNow(0.4)}>
               {t("hero.description")}
             </motion.p>
             <motion.div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center" {...riseNow(0.5)}>
@@ -77,14 +77,14 @@ export function HeroSection() {
               height={680}
               fetchPriority="high"
               decoding="async"
-              className="mx-auto w-[300px] md:w-[420px] lg:w-full lg:max-w-[440px]"
+              className="mx-auto w-[260px] md:w-[420px] lg:w-full lg:max-w-[440px]"
               {...float(10, 7, 1.2)}
             />
           </motion.figure>
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto mt-16 max-w-6xl px-6 md:mt-24">
+      <div className="relative z-10 mx-auto mt-10 max-w-6xl px-6 md:mt-24">
         <motion.div
           className="grad-rule origin-left"
           initial={{ scaleX: 0 }}

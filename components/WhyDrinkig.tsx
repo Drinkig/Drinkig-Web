@@ -9,11 +9,11 @@ export function WhyDrinkig() {
   const { t } = useLanguage();
 
   return (
-    <section id="why" className="scroll-mt-20 border-t border-paper-line py-20 md:py-28">
+    <section id="why" className="scroll-mt-20 border-t border-paper-line py-14 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <motion.div className="max-w-3xl" {...rise()}>
           <p className="eyebrow">{t("why.eyebrow")}</p>
-          <p className="mt-5 whitespace-pre-line text-2xl font-bold leading-[1.35] tracking-[-0.03em] text-ink md:text-[2.5rem]">
+          <p className="mt-5 whitespace-pre-line text-[1.5rem] font-bold leading-[1.35] tracking-[-0.03em] text-ink md:text-[2.5rem]">
             <Em text={t("why.lead")} />
           </p>
         </motion.div>
@@ -26,7 +26,7 @@ export function WhyDrinkig() {
               {...rise(0.1 + i * 0.1)}
             >
               <dt className="text-lg font-semibold text-ink">{t(`why.${p}.title`)}</dt>
-              <dd className="mt-2 text-lg leading-[1.7] text-ink-soft">{t(`why.${p}.desc`)}</dd>
+              <dd className="mt-2 text-base leading-[1.7] md:text-lg text-ink-soft">{t(`why.${p}.desc`)}</dd>
             </motion.div>
           ))}
         </dl>

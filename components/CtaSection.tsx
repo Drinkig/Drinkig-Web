@@ -34,12 +34,12 @@ export function CtaSection() {
     <section className="wash-ink text-paper">
       <div className="grad-rule" />
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid items-center gap-12 py-20 md:py-28 lg:grid-cols-12">
+        <div className="grid items-center gap-12 py-14 md:py-28 lg:grid-cols-12">
           <motion.div className="lg:col-span-7" {...rise()}>
-            <h2 className="whitespace-pre-line text-3xl font-bold leading-[1.2] tracking-[-0.03em] md:text-[2.75rem]">
+            <h2 className="whitespace-pre-line text-[1.75rem] font-bold leading-[1.2] tracking-[-0.03em] md:text-[2.75rem]">
               <Em text={t("cta.title")} />
             </h2>
-            <p className="mt-5 max-w-md text-lg leading-[1.7] text-paper/70">{t("cta.description")}</p>
+            <p className="mt-5 max-w-md text-base leading-[1.7] md:text-lg text-paper/70">{t("cta.description")}</p>
             <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="btn-primary mt-10">
               <AppleLogo className="h-[18px] w-[18px]" />
               {t("cta.button")}
@@ -53,7 +53,7 @@ export function CtaSection() {
               height={899}
               loading="lazy"
               decoding="async"
-              className="mx-auto w-52 md:w-64 lg:w-full"
+              className="mx-auto w-40 md:w-64 lg:w-full"
               {...float(7, 6.5, 0.5)}
             />
           </motion.figure>
