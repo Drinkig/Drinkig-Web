@@ -44,6 +44,16 @@ const STATIC_META: Record<string, Record<Lang, RouteMeta>> = {
     ko: { title: "공지사항 | 드링키지", description: "드링키지의 새로운 소식과 공지사항을 확인하세요." },
     en: { title: "Notices | Drinkig", description: "News and announcements from Drinkig." },
   },
+  "/stores": {
+    ko: {
+      title: "매장 도입 문의 | 드링키지",
+      description: "테이블 위 QR 하나로 손님 취향과 예산에 맞춰 우리 매장 와인을 추천합니다. 음식점, 와인바, 와인샵 도입 문의.",
+    },
+    en: {
+      title: "For Stores | Drinkig",
+      description: "One QR code on the table recommends wines from your own list, matched to each guest's taste and budget.",
+    },
+  },
 };
 
 export function getMeta(pathname: string): RouteMeta {
@@ -67,6 +77,6 @@ export function getMeta(pathname: string): RouteMeta {
 
 /** 프리렌더 대상 전체 경로 (ko + en) */
 export function getPrerenderPaths(): string[] {
-  const koPaths = ["/", "/terms", "/privacy", "/notices", ...notices.map((n) => `/notices/${n.id}`)];
+  const koPaths = ["/", "/stores", "/terms", "/privacy", "/notices", ...notices.map((n) => `/notices/${n.id}`)];
   return [...koPaths, ...koPaths.map((p) => localizePath(p, "en"))];
 }

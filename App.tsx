@@ -18,6 +18,7 @@ const Notices = lazy(() =>
 const NoticeDetail = lazy(() =>
   import("./components/NoticeDetail").then((m) => ({ default: m.NoticeDetail })),
 );
+const Stores = lazy(() => import("./components/Stores").then((m) => ({ default: m.Stores })));
 
 // 어드민 — 클라이언트 전용(프리렌더 제외, /en 미러 없음)
 const AdminLogin = lazy(() =>
@@ -45,6 +46,7 @@ const routes: Array<{ path: string; element: ReactElement }> = [
   { path: "/privacy", element: <PrivacyPolicy /> },
   { path: "/notices", element: <Notices /> },
   { path: "/notices/:id", element: <NoticeDetail /> },
+  { path: "/stores", element: <Stores /> },
 ];
 
 // 라우터(BrowserRouter/StaticRouter) 안쪽 전체. SSR 엔트리에서도 재사용한다.

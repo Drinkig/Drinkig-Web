@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n";
 import { useState, useRef, useEffect } from "react";
-import { APP_STORE_URL, INSTAGRAM_URL, WORDMARK_INK_SRC, CONTACT_EMAIL } from "../lib/constants";
+import { APP_STORE_URL, INSTAGRAM_URL, WORDMARK_INK_SRC, WORDMARK_PAPER_SRC, CONTACT_EMAIL } from "../lib/constants";
+import { cn } from "./ui/utils";
 import { AppleLogo } from "./icons";
 
-export function Footer() {
+export function Footer({ dark = false }: { dark?: boolean }) {
   const { lang, setLang, t, lp } = useLanguage();
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
@@ -25,26 +26,30 @@ export function Footer() {
     };
   }, [langOpen]);
 
-  const iconBtn =
-    "flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-ink-soft transition-colors hover:border-ink hover:text-ink";
+  const iconBtn = cn(
+    "flex h-9 w-9 items-center justify-center rounded-full border transition-colors",
+    dark ? "border-transparent bg-paper/10 text-paper/70 hover:bg-paper/20 hover:text-paper" : "border-ink/15 text-ink-soft hover:border-ink hover:text-ink",
+  );
+  const link = dark ? "text-paper/70 transition-colors hover:text-paper" : "text-ink-soft transition-colors hover:text-ink";
+  const muted = dark ? "text-paper/50" : "text-ink-muted";
 
   return (
-    <footer className="border-t border-paper-line bg-paper">
+    <footer className={cn("border-t", dark ? "border-paper/10 bg-ink text-paper" : "border-paper-line bg-paper")}>
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-col justify-between gap-10 md:flex-row">
           {/* 왼쪽: 워드마크 + 사업자 정보 + 카피라이트 */}
           <div>
-            <img src={WORDMARK_INK_SRC} alt="DRINKIG" width={800} height={134} loading="lazy" className="mb-5 h-4 w-auto" />
-            <p className="mb-1.5 text-xs text-ink-muted">{t("footer.businessInfo")}</p>
-            <p className="mb-3 text-xs text-ink-muted">
+            <img src={dark ? WORDMARK_PAPER_SRC : WORDMARK_INK_SRC} alt="DRINKIG" width={800} height={134} loading="lazy" className="mb-5 h-4 w-auto" />
+            <p className={cn("mb-1.5 text-xs", muted)}>{t("footer.businessInfo")}</p>
+            <p className={cn("mb-3 text-xs", muted)}>
               {t("footer.contact")}:{" "}
-              <a href={`mailto:${CONTACT_EMAIL}`} className="transition-colors hover:text-ink">
+              <a href={`mailto:${CONTACT_EMAIL}`} className={cn("transition-colors", dark ? "hover:text-paper" : "hover:text-ink")}>
                 {CONTACT_EMAIL}
               </a>
             </p>
-            <p className="text-sm text-ink-muted">
+            <p className={cn("text-sm", muted)}>
               Copyright &copy; 2026 Drinkig.{" "}
-              <Link to="/admin" className="text-ink-muted/70 transition-colors hover:text-ink-muted">
+              <Link to="/admin" className={cn("transition-colors", dark ? "text-paper/30 hover:text-paper/60" : "text-ink-muted/70 hover:text-ink-muted")}>
                 관리자
               </Link>
             </p>
@@ -64,14 +69,17 @@ export function Footer() {
             </div>
 
             <div className="flex items-center gap-5 text-sm">
-              <Link to={lp("/privacy")} className="text-ink-soft transition-colors hover:text-ink">
+              <Link to={lp("/privacy")} className={link}>
                 {t("privacy")}
               </Link>
-              <Link to={lp("/terms")} className="text-ink-soft transition-colors hover:text-ink">
+              <Link to={lp("/terms")} className={link}>
                 {t("terms")}
               </Link>
-              <Link to={lp("/notices")} className="text-ink-soft transition-colors hover:text-ink">
+              <Link to={lp("/notices")} className={link}>
                 {t("notices")}
+              </Link>
+              <Link to={lp("/stores")} className={link}>
+                {t("nav.stores")}
               </Link>
             </div>
 
@@ -82,7 +90,10 @@ export function Footer() {
                 aria-label="언어 선택 / Select language"
                 aria-haspopup="listbox"
                 aria-expanded={langOpen}
-                className="flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2 text-sm text-ink-soft transition-colors hover:border-ink hover:text-ink"
+                className={cn(
+                  "flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors",
+                  dark ? "border-transparent bg-paper/10 text-paper/70 hover:bg-paper/20 hover:text-paper" : "border-ink/15 text-ink-soft hover:border-ink hover:text-ink",
+                )}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />

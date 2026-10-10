@@ -3,7 +3,7 @@ import { HeroSection } from "./HeroSection";
 import { FeaturesSection } from "./FeaturesSection";
 import { HowItWorks } from "./HowItWorks";
 import { WhyDrinkig } from "./WhyDrinkig";
-import { CtaSection } from "./CtaSection";
+import { CtaSection, StoresBand } from "./CtaSection";
 import { Footer } from "./Footer";
 
 export function Home() {
@@ -15,6 +15,7 @@ export function Home() {
                 <FeaturesSection />
                 <HowItWorks />
                 <WhyDrinkig />
+                <StoresBand />
                 <CtaSection />
             </main>
             <Footer />

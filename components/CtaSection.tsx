@@ -1,8 +1,27 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n";
 import { APP_STORE_URL } from "../lib/constants";
 import { AppleLogo } from "./icons";
 import { float, resolve, rise } from "../lib/motion";
+
+// 소비자 랜딩 끝에서 매장 페이지로 보내는 띠. 한 문장과 링크 하나.
+export function StoresBand() {
+  const { t, lp } = useLanguage();
+  return (
+    <section className="border-t border-paper-line">
+      <motion.div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-12 md:flex-row md:items-center md:justify-between md:py-14" {...rise()}>
+        <div>
+          <p className="text-xl font-semibold text-ink md:text-2xl">{t("home.stores.title")}</p>
+          <p className="mt-1.5 text-ink-soft">{t("home.stores.desc")}</p>
+        </div>
+        <Link to={lp("/stores")} className="btn-secondary shrink-0">
+          {t("home.stores.link")}
+        </Link>
+      </motion.div>
+    </section>
+  );
+}
 
 export function CtaSection() {
   const { t } = useLanguage();

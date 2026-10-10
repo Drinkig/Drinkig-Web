@@ -175,6 +175,67 @@
     @apply text-ink;
   }
 
+  /* 잉크 띠 위의 입력칸 */
+  .field {
+    @apply w-full rounded-xl bg-white/[0.08] px-4 py-3 text-paper outline-none transition-colors placeholder:text-paper/40 focus:bg-white/[0.14];
+  }
+  /* 선택지 알약: 눌리면 종이색 채움 */
+  .chip {
+    @apply rounded-full bg-white/[0.08] px-4 py-2 text-sm text-paper/80 transition-colors hover:bg-white/[0.14] hover:text-paper;
+  }
+  .chip[aria-pressed="true"] {
+    @apply bg-paper font-medium text-ink;
+  }
+  select.field {
+    @apply appearance-none bg-no-repeat pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F6F2EA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-position: right 14px center;
+    background-size: 16px;
+  }
+  select.field option {
+    color: theme("colors.ink.DEFAULT");
+  }
+
+  /* 후킹 강조. 제목은 보라 형광펜, 본문은 라일락 글자. */
+  .hl {
+    @apply rounded-[0.15em] bg-brand text-paper;
+    padding: 0.02em 0.12em;
+    margin: 0 -0.04em; /* 칠한 상자가 글 흐름을 밀지 않도록 */
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    background-image: linear-gradient(100deg, #7e13b1, #9b2fd1);
+  }
+  .hl-text {
+    @apply font-semibold text-lilac;
+  }
+
+  /* 매장(기업) 페이지는 잉크 톤. 소비자 페이지(종이)와 확실히 다르게 읽히도록. */
+  .tone-dark {
+    @apply bg-ink text-paper;
+  }
+  .tone-dark .eyebrow {
+    @apply text-paper/50;
+  }
+  .tone-dark .nav-link {
+    @apply text-paper/60 hover:text-paper;
+  }
+  .tone-dark .nav-link[aria-current="true"] {
+    @apply text-paper;
+  }
+  .tone-dark ::selection {
+    @apply bg-brand/40 text-paper;
+  }
+
+  /* 사진을 배경처럼: 가장자리가 녹아드는 마스크 */
+  .photo-fade-left {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 45%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 45%, #000 100%);
+  }
+  .photo-fade-right {
+    -webkit-mask-image: linear-gradient(270deg, transparent 0%, #000 45%, #000 100%);
+    mask-image: linear-gradient(270deg, transparent 0%, #000 45%, #000 100%);
+  }
+
   /* 브랜드 그라데이션 한 줄 */
   .grad-rule {
     height: 2px;
