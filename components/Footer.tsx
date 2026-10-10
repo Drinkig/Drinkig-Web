@@ -47,12 +47,7 @@ export function Footer({ dark = false }: { dark?: boolean }) {
                 {CONTACT_EMAIL}
               </a>
             </p>
-            <p className={cn("text-sm", muted)}>
-              Copyright &copy; 2026 Drinkig.{" "}
-              <Link to="/admin" className={cn("transition-colors", dark ? "text-paper/30 hover:text-paper/60" : "text-ink-muted/70 hover:text-ink-muted")}>
-                관리자
-              </Link>
-            </p>
+            <p className={cn("text-sm", muted)}>Copyright &copy; 2026 Drinkig.</p>
           </div>
 
           {/* 오른쪽 */}
