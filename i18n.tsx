@@ -23,7 +23,7 @@ const translations = {
 
     // Features
     "features.eyebrow": "주요 기능",
-    "features.title": "와인 앞에서 막막할 때",
+    "features.title": "수많은 와인 앞에서 막막할 때",
     "features.scan.eyebrow": "01 · 라벨 스캔",
     "features.scan.title": "이름이 복잡한 와인,\n찍어서 바로 검색하세요",
     "features.scan.desc":
@@ -67,7 +67,7 @@ const translations = {
 
     // CTA
     "cta.title": "오늘 저녁 와인,\n뭐 마실지 정했나요?",
-    "cta.description": "무료. 질문 몇 개면 첫 추천까지.",
+    "cta.description": "질문 몇 개에 답하면 바로 첫 추천을 받아요.",
     "cta.button": "App Store에서 받기",
 
     // Footer
@@ -103,7 +103,7 @@ const translations = {
 
     // Features
     "features.eyebrow": "Features",
-    "features.title": "When the wine list stares back",
+    "features.title": "Lost in front of a wall of wine?",
     "features.scan.eyebrow": "01 · Label scan",
     "features.scan.title": "Long, hard names?\nJust take a photo",
     "features.scan.desc":
@@ -147,7 +147,7 @@ const translations = {
 
     // CTA
     "cta.title": "Decided what to open\ntonight?",
-    "cta.description": "Free. A few questions, then your first pick.",
+    "cta.description": "Answer a few questions and get your first pick right away.",
     "cta.button": "Get it on the App Store",
 
     // Footer

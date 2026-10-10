@@ -217,7 +217,28 @@
       theme("colors.ink.DEFAULT");
   }
 
+  /* 와인병 마키: 양끝은 배경으로 녹아들고, 트랙은 천천히 왼쪽으로 */
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 90s linear infinite;
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
     .nav-link::after,
     .btn-primary,
     .btn-secondary {

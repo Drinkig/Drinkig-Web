@@ -3,6 +3,7 @@ import { useLanguage, type TranslationKey } from "../i18n";
 import { cn } from "./ui/utils";
 import { rise } from "../lib/motion";
 import { PhoneFrame } from "./PhoneFrame";
+import { BottleMarquee } from "./BottleMarquee";
 
 // 기능 네 가지. 이미지는 전부 앱스토어에 올린 실제 화면. caption 키는 alt 텍스트로만 쓴다.
 const FEATURES = [
@@ -21,14 +22,20 @@ export function FeaturesSection() {
 
   return (
     <section id="features" className="scroll-mt-20">
-      <div className="mx-auto max-w-6xl px-6">
-        <motion.div className="pt-16 md:pt-24" {...rise()}>
-          <p className="eyebrow">{t("features.eyebrow")}</p>
-          <h2 className="mt-5 max-w-2xl text-3xl font-bold leading-[1.2] tracking-[-0.03em] text-ink md:text-[2.75rem]">
-            {t("features.title")}
-          </h2>
-        </motion.div>
+      {/* 섹션 머리: 잉크색 띠 위에 제목, 그 뒤로 와인병들이 지나간다 */}
+      <div className="wash-ink relative overflow-hidden text-paper">
+        <div className="relative z-10 mx-auto max-w-6xl px-6 pt-20 md:pt-28">
+          <motion.div {...rise()}>
+            <p className="eyebrow text-paper/60">{t("features.eyebrow")}</p>
+            <h2 className="mt-5 max-w-2xl text-3xl font-bold leading-[1.2] tracking-[-0.03em] md:text-[3rem]">
+              {t("features.title")}
+            </h2>
+          </motion.div>
+        </div>
+        <BottleMarquee className="mt-12 pb-14 md:mt-16 md:pb-20" />
+      </div>
 
+      <div className="mx-auto max-w-6xl px-6">
         {FEATURES.map((f, i) => {
           const flip = i % 2 === 1;
           return (

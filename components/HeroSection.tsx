@@ -80,6 +80,7 @@ export function HeroSection() {
           </motion.figure>
         </div>
       </div>
+
       <div className="relative z-10 mx-auto mt-16 max-w-6xl px-6 md:mt-24">
         <motion.div
           className="grad-rule origin-left"
