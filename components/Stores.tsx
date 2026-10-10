@@ -229,7 +229,7 @@ export function Stores() {
                 <h2 className="whitespace-pre-line text-[1.75rem] font-bold leading-[1.2] tracking-[-0.03em] text-paper md:text-[2.25rem]">
                   <Em text={t(`stores.${k}.title`)} />
                 </h2>
-                <p className="mx-auto mt-5 max-w-sm text-lg leading-[1.7] text-paper/70">{t(`stores.${k}.desc`)}</p>
+                <p className="mx-auto mt-5 max-w-sm whitespace-pre-line text-lg leading-[1.7] text-paper/70">{t(`stores.${k}.desc`)}</p>
               </motion.div>
             ))}
           </div>
